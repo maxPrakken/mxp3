@@ -1,5 +1,7 @@
 #include "../include/renderer.h"
 
+Renderer* Renderer::instance = NULL;
+
 Renderer::Renderer()
 {
 	resX = 800;
@@ -7,6 +9,12 @@ Renderer::Renderer()
 	if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
+		exit(-1);
+	}
+	if (IMG_Init(IMG_INIT_PNG) == 0)
+	{
+		std::cout << "Could not initiate SDL2_IMG: " << IMG_GetError() << std::endl;
+		SDL_Quit();
 		exit(-1);
 	}
 
@@ -63,6 +71,24 @@ Renderer::~Renderer()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+}
+
+Renderer * Renderer::getInstance()
+{
+	if (instance == NULL) {
+		instance = new Renderer();
+	}
+	return instance;
+}
+
+void Renderer::showTexture(SDL_Texture* tex) {
+	SDL_Rect srect;
+	srect.x = 0;
+	srect.y = 0;
+	srect.h = 512;
+	srect.w = 512;
+	SDL_Rect drect;
+	SDL_RenderCopy(renderer, tex, NULL, &srect);
 }
 
 void Renderer::update()
