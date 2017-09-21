@@ -2,16 +2,20 @@
 #include <texture.h>
 #include <SDL2\SDL.h>
 #include <input.h>
+
+#include "../MXP3/include/entity.h"
+
 Input* Input::instance = NULL;
 
 #undef main
 int main(int argc, char *argv[])
 {
-	Texture* texture = new Texture("assets/pepe.png");
+	Entity* myEntity = new Entity();
+	myEntity->myTex = new Texture("assets/INA.tga");
 	while (!Input::MustQuit())
 	{
 		Input::Update();
-		Renderer::getInstance()->showTexture(texture->tex);
+		myEntity->addchild();
 		Renderer::getInstance()->update();
 	}
 	return 0;

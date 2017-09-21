@@ -140,14 +140,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\input.h" />
     <ClInclude Include="include\renderer.h" />
     <ClInclude Include="include\texture.h" />
+    <ClInclude Include="include\vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
