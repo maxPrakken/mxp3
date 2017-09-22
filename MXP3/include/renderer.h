@@ -4,6 +4,8 @@
 #include <SDL2\SDL.h>
 #include <SDL2\SDL_image.h>
 
+#include "entity.h"
+
 class __declspec(dllexport) Renderer
 {
 public:
@@ -12,6 +14,7 @@ public:
 	void showTexture(SDL_Texture * tex);
 
 	void update();
+	void renderEntity(Entity * entity);
 	SDL_Renderer* getRenderer() {
 		return renderer;
 	};

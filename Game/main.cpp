@@ -10,13 +10,14 @@ Input* Input::instance = NULL;
 #undef main
 int main(int argc, char *argv[])
 {
-	Entity* myEntity = new Entity();
-	myEntity->myTex = new Texture("assets/INA.tga");
+	Entity* myEntity = new Entity(Renderer::getInstance()->getRenderer());
 	while (!Input::MustQuit())
 	{
 		Input::Update();
-		myEntity->addchild();
+		//this->addchild(myEntity);
+		Renderer::getInstance()->renderEntity(myEntity);
 		Renderer::getInstance()->update();
+
 	}
 	return 0;
 }

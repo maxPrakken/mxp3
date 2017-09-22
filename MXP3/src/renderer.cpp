@@ -6,7 +6,7 @@ Renderer::Renderer()
 {
 	resX = 800;
 	resY = 600;
-	if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
 		exit(-1);
@@ -33,11 +33,11 @@ Renderer::Renderer()
 		SDL_Quit();
 		exit(-3);
 	}
-	
+
 	std::cout << "Renderer Created" << std::endl;
 }
 
-Renderer::Renderer(int rX,int rY)
+Renderer::Renderer(int rX, int rY)
 {
 	resX = rX;
 	resY = rY;
@@ -96,4 +96,19 @@ void Renderer::update()
 	SDL_SetRenderDrawColor(renderer, 100, 100, 255, 255);
 	SDL_RenderPresent(renderer);
 	SDL_RenderClear(renderer);
+
+}
+
+void Renderer::renderEntity(Entity* entity)
+{
+	if (entity->myTex != NULL) {
+		if (entity->myTex->tex != NULL)
+			SDL_RenderCopyEx(renderer, entity->myTex->tex, NULL, NULL, 0, 0, SDL_FLIP_NONE);
+	}
+	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
+	while (it != entity->childrenVec.end())
+	{
+		renderEntity((*it));
+		it++;
+	}
 }
