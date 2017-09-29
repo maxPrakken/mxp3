@@ -101,10 +101,12 @@ void Renderer::update()
 
 void Renderer::renderEntity(Entity* entity)
 {
-	if (entity->myTex != NULL) {
-		if (entity->myTex->tex != NULL)
-			SDL_RenderCopyEx(renderer, entity->myTex->tex, NULL, NULL, 0, 0, SDL_FLIP_NONE);
+	Texture* texture = entity->myTex;
+
+	if (texture != NULL) {
+		renderTexture(texture);
 	}
+
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
 	{
@@ -112,3 +114,20 @@ void Renderer::renderEntity(Entity* entity)
 		it++;
 	}
 }
+
+void Renderer::renderScene(Entity * entity)
+{
+	SDL_RenderClear(this->renderer);
+
+	renderEntity(entity);
+
+	SDL_RenderPresent(this->renderer);
+}
+
+void Renderer::renderTexture(Texture* texture)
+{
+	if (texture->tex != NULL){
+		SDL_RenderCopyEx(renderer, texture->tex, NULL, NULL, 0, 0, SDL_FLIP_NONE);
+	}
+}
+
