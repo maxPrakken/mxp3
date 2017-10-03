@@ -18,7 +18,7 @@ Entity::~Entity()
 	delete myTex;
 }
 
-void Entity::update(float deltatime)
+void Entity::update(double deltatime)
 {
 
 }

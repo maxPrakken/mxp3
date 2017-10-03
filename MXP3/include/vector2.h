@@ -2,16 +2,16 @@
 #define VECTOR2_H
 
 #include <math.h>
-
-class Vector2 {
+#include <iostream>
+class __declspec(dllexport) Vector2 {
 
 public:
-	int x;
-	int y;
+	double x;
+	double y;
 
 	Vector2();
 
-	Vector2(int x_, int y_);
+	Vector2(double x_, double y_);
 
 	virtual ~Vector2();
 
@@ -24,6 +24,8 @@ public:
 	void operator-=(const Vector2 &oth);
 
 	Vector2 operator*(const Vector2 &oth);
+	Vector2 operator*(const float &oth);
+	Vector2 operator*(const double &oth);
 
 	void operator*=(const Vector2 &oth);
 

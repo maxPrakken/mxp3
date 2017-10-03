@@ -14,9 +14,11 @@ Scene::~Scene()
 {
 }
 
-void Scene::update(float deltatime)
+void Scene::update(double deltatime)
 {
-	std::cout << pic->pos->x << "   " << pic->pos->y << std::endl;
+	if (Input::getInstance()->getKey(SDLK_w)) {
+		(*pic->pos) -= Vector2(0, 100) * deltatime; 
+	}
 
 	updateChildren(deltatime);
 }

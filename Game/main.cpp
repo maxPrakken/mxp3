@@ -13,10 +13,9 @@ int main(int argc, char *argv[])
 {
 	Scene* scene = new Scene(Renderer::getInstance()->getRenderer());
 
-	while (!Input::MustQuit())
+	while (!Input::getInstance()->getMustQuit())
 	{
-		Input::Update();
-		//this->addchild(myEntity);
+		Input::getInstance()->update();
 		scene->update(Renderer::getInstance()->getDeltatime());
 		Renderer::getInstance()->renderScene(scene);
 		Renderer::getInstance()->update();

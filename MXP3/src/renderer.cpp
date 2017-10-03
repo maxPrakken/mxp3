@@ -58,7 +58,7 @@ Renderer::Renderer(int rX, int rY)
 		exit(-2);
 	}
 
-	renderer = SDL_CreateRenderer(window, -1, NULL);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
 		SDL_DestroyWindow(window);
@@ -149,5 +149,6 @@ void Renderer::calculateDeltatime()
 	Uint64 NOW = SDL_GetTicks();
 	deltatime = NOW - LAST;
 	deltatime /= 1000;
+	LAST = NOW;
 }
 

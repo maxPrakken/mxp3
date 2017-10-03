@@ -4,7 +4,7 @@ Vector2::Vector2() {
 
 }
 
-Vector2::Vector2(int x_, int y_) {
+Vector2::Vector2(double x_, double y_) {
 	x = x_;
 	y = y_;
 }
@@ -38,6 +38,16 @@ void Vector2::operator-=(const Vector2 & oth)
 Vector2 Vector2::operator*(const Vector2 & oth)
 {
 	return Vector2(this->x * oth.x, this->y * oth.y);
+}
+
+Vector2 Vector2::operator*(const float & oth)
+{
+	return Vector2(x * oth, y * oth);
+}
+
+Vector2 Vector2::operator*(const double & oth)
+{
+	return Vector2(x * oth, y * oth);
 }
 
 void Vector2::operator*=(const Vector2 & oth)

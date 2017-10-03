@@ -11,7 +11,7 @@ public:
 	Entity(SDL_Renderer* renderer);
 	virtual ~Entity();
 
-	virtual void update(float deltatime);
+	virtual void update(double deltatime);
 
 	Texture* myTex;
 
