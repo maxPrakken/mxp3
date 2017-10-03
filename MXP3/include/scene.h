@@ -10,6 +10,8 @@ public:
 
 	void update(float deltatime);
 
-private:
+	Entity* pic;
 
+private:
+	void updateChildren(float deltatime);
 };

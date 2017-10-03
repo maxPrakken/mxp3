@@ -50,9 +50,6 @@
     <ClInclude Include="include\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>

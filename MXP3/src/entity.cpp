@@ -8,6 +8,9 @@ Entity::Entity(SDL_Renderer* renderer)
 	_nextGuid++;
 	this->_parent = NULL;
 	myTex = new Texture();
+
+	pos = new Vector2(0, 0);
+	scale = new Vector2(100, 100);
 }
 
 Entity::~Entity()

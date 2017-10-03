@@ -153,7 +153,6 @@
     <ClInclude Include="include\renderer.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\texture.h" />
-    <ClInclude Include="include\utility.h" />
     <ClInclude Include="include\vector2.h" />
   </ItemGroup>
   <ItemGroup>

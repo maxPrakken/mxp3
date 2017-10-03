@@ -16,7 +16,7 @@ public:
 	void update();
 	void renderEntity(Entity * entity);
 	void renderScene(Entity* entity);
-	void renderTexture(Texture* texture);
+	void renderTexture(Texture* texture, SDL_Rect* rect);
 	double getDeltatime() { return deltatime; }
 	SDL_Renderer* getRenderer() {
 		return renderer;

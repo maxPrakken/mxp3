@@ -108,7 +108,16 @@ void Renderer::renderEntity(Entity* entity)
 	Texture* texture = entity->myTex;
 
 	if (texture != NULL) {
-		renderTexture(texture);
+		SDL_Rect r;
+		if (entity->pos != NULL) {
+			r.x = entity->pos->x;
+			r.y = entity->pos->y;
+		}
+		if (entity->scale != NULL) {
+			r.h = entity->scale->y;
+			r.w = entity->scale->x;
+		}
+		renderTexture(texture, &r);
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -124,13 +133,14 @@ void Renderer::renderScene(Entity * entity)
 
 	renderEntity(entity);
 
+
 	SDL_RenderPresent(this->renderer);
 }
 
-void Renderer::renderTexture(Texture* texture)
+void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 {
 	if (texture->tex != NULL){
-		SDL_RenderCopyEx(renderer, texture->tex, NULL, NULL, 0, 0, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, 0, 0, SDL_FLIP_NONE);
 	}
 }
 
