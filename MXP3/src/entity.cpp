@@ -6,8 +6,8 @@ Entity::Entity(SDL_Renderer* renderer)
 {
 	_guid = _nextGuid;
 	_nextGuid++;
-
-	myTex = new Texture(renderer,"assets/INA.tga");
+	this->_parent = NULL;
+	myTex = new Texture();
 }
 
 Entity::~Entity()
@@ -36,6 +36,7 @@ void Entity::removechild(Entity * child)
 	while (it != childrenVec.end()) {
 		if ((*it)->_guid == child->_guid) {
 			it = childrenVec.erase(it);
+			return;
 		}
 		else {
 			++it;

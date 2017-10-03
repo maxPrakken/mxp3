@@ -106,7 +106,6 @@ void Renderer::renderEntity(Entity* entity)
 	if (texture != NULL) {
 		renderTexture(texture);
 	}
-
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
 	{

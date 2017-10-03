@@ -11,6 +11,9 @@ Input* Input::instance = NULL;
 int main(int argc, char *argv[])
 {
 	Entity* scene = new Entity(Renderer::getInstance()->getRenderer());
+	Entity* pic = new Entity(Renderer::getInstance()->getRenderer());
+	pic->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
+	scene->addchild(pic);
 	while (!Input::MustQuit())
 	{
 		Input::Update();
