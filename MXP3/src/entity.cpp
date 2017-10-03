@@ -15,7 +15,10 @@ Entity::~Entity()
 	delete myTex;
 }
 
+void Entity::update(float deltatime)
+{
 
+}
 
 void Entity::addchild(Entity* child)
 {

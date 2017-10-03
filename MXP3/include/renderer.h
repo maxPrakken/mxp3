@@ -17,17 +17,23 @@ public:
 	void renderEntity(Entity * entity);
 	void renderScene(Entity* entity);
 	void renderTexture(Texture* texture);
+	double getDeltatime() { return deltatime; }
 	SDL_Renderer* getRenderer() {
 		return renderer;
 	};
 private:
 	int resX, resY;
 
+	Uint64 LAST;
+	double deltatime;
+
 	static Renderer* instance;
 
 	Renderer();
 	Renderer(int rX, int rY);
 	virtual ~Renderer();
+
+	void calculateDeltatime();
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;

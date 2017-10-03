@@ -4,6 +4,9 @@ Renderer* Renderer::instance = NULL;
 
 Renderer::Renderer()
 {
+	LAST = 0;
+	deltatime = 0;
+
 	resX = 800;
 	resY = 600;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
@@ -97,6 +100,7 @@ void Renderer::update()
 	SDL_RenderPresent(renderer);
 	SDL_RenderClear(renderer);
 
+	calculateDeltatime();
 }
 
 void Renderer::renderEntity(Entity* entity)
@@ -128,5 +132,12 @@ void Renderer::renderTexture(Texture* texture)
 	if (texture->tex != NULL){
 		SDL_RenderCopyEx(renderer, texture->tex, NULL, NULL, 0, 0, SDL_FLIP_NONE);
 	}
+}
+
+void Renderer::calculateDeltatime()
+{
+	Uint64 NOW = SDL_GetTicks();
+	deltatime = NOW - LAST;
+	deltatime /= 1000;
 }
 

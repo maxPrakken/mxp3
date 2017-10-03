@@ -11,6 +11,8 @@ public:
 	Entity(SDL_Renderer* renderer);
 	virtual ~Entity();
 
+	virtual void update(float deltatime);
+
 	Texture* myTex;
 
 	Vector2* pos;
