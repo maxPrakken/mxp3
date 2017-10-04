@@ -4,8 +4,8 @@
 Scene::Scene(SDL_Renderer * renderer) : Entity(renderer)
 {
 	pic = new Entity(Renderer::getInstance()->getRenderer());
-	
-	pic->addTexture("assets/INA.tga");
+
+	pic->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
 	this->addchild(pic);
 	pic->pos = new Vector2(200, 300);
 }

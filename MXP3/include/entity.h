@@ -4,7 +4,7 @@
 
 #include "texture.h"
 #include "vector2.h"
-#include "renderer.h"
+//#include "renderer.h"
 
 #include <SDL2\SDL.h>
 #include <vector>
@@ -33,7 +33,7 @@ public:
 	//removechild function, removes it from the window and parent
 	void removechild(Entity* child);
 	//addtexture function, add the myTex texture to the entity
-	void addTexture(std::string path);
+	//void addTexture(std::string path);
 
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;

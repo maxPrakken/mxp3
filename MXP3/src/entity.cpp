@@ -7,7 +7,7 @@ Entity::Entity(SDL_Renderer* renderer)
 	_guid = _nextGuid;
 	_nextGuid++;
 	this->_parent = NULL;
-	myTex = new Texture(renderer, "assets/INA.tga");
+	myTex = new Texture();
 
 	pos = new Vector2(0, 0);
 	scale = new Vector2(100, 100);
@@ -50,8 +50,8 @@ void Entity::removechild(Entity * child)
 		}
 	}
 }
-
+/*
 void Entity::addTexture(std::string path)
 {
 	myTex = new Texture(Renderer::getInstance()->getRenderer(), path);
-}
+}*/
