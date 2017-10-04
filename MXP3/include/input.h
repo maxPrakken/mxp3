@@ -4,28 +4,45 @@
 #include "vector2.h"
 #include <iostream>
 
+//singleton input
 class __declspec(dllexport) Input {
 public:
+	//deconstructor
 	virtual ~Input();
+	//get instance of input
 	static Input *getInstance();
+	//update function
 	void update();
+	//looks if key is pressed
 	bool getKey(int keyCode);
+	//looks if key goes up
 	bool getKeyUp(int keyCode);
+	//looks if key goes down
 	bool getKeyDown(int keyCode);
 
+	//looks if mousebutton is pressed
 	bool getMouseButton(int number);
+	//looks if mousebutton goes down
 	bool getMouseButtonDown(int number);
+	//looks if mousebutton goes up
 	bool getMouseButtonUp(int number);
 
+	//checks if the application is set to quit
 	bool getMustQuit() { return mustquit; };
 
+	//mouseposition relative to the window
 	Vector2 getMouseToScreen();
 	
+	//int window width and height
 	int window_width, window_height;
 
 private:
+	//default constructor
 	Input();
+	//instance of singleton
 	static Input *instance;
+
+	//all possible keyboard and mouse combinations
 	bool keys[282];
 	bool keysUp[282];
 	bool keysDown[282];
@@ -40,7 +57,9 @@ private:
 	bool mouseButtonAlreadyUp[20];
 	bool mouseButtonAlreadyDown[20];
 
+	//bool to check if the program must quit
 	bool mustquit = false;
 
+	//vector2 that keeps track of the mouse position
 	Vector2 mousePos;
 };
