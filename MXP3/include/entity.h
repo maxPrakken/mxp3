@@ -4,12 +4,11 @@
 
 #include "texture.h"
 #include "vector2.h"
-//#include "renderer.h"
 
-#include <SDL2\SDL.h>
+#include <SDL2/SDL.h>
 #include <vector>
 
-//class Renderer;
+class Renderer;
 
 class __declspec(dllexport) Entity {
 public:

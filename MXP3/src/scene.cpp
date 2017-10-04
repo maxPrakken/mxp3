@@ -1,4 +1,4 @@
-#include "..\include\scene.h"
+#include "../include/scene.h"
 
 
 Scene::Scene(SDL_Renderer * renderer) : Entity(renderer)
@@ -7,7 +7,8 @@ Scene::Scene(SDL_Renderer * renderer) : Entity(renderer)
 
 	pic->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
 	this->addchild(pic);
-	pic->pos = new Vector2(200, 300);
+	pic->scale = new Vector2(100, 100);
+	pic->pos = placeCenter(pic);
 }
 
 Scene::~Scene()
@@ -22,6 +23,11 @@ void Scene::update(double deltatime)
 	}
 
 	updateChildren(deltatime);
+}
+
+Vector2* Scene::placeCenter(Entity* entity)
+{
+	return new Vector2((Renderer::getInstance()->getResolution().x / 2) - (entity->scale->x / 2), (Renderer::getInstance()->getResolution().y / 2) - (entity->scale->x / 2));
 }
 
 void Scene::updateChildren(float deltatime)

@@ -50,6 +50,7 @@ void Entity::removechild(Entity * child)
 		}
 	}
 }
+
 /*
 void Entity::addTexture(std::string path)
 {

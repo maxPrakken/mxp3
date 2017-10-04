@@ -24,6 +24,8 @@ public:
 	void renderScene(Entity* entity);
 	//renders texture in window
 	void renderTexture(Texture* texture, SDL_Rect* rect);
+	//gets resolution
+	Vector2 getResolution() { return Vector2(resX, resY); }
 	//gets deltatime
 	double getDeltatime() { return deltatime; }
 	//retrieves the instance of the renderer
