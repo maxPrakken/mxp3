@@ -18,6 +18,7 @@ public:
 	Vector2* placeCenter(Entity* entity);
 
 	Entity* pic;
+	Entity* pic2;
 
 private:
 	//update the children of the scene

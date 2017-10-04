@@ -34,6 +34,9 @@ public:
 	//addtexture function, add the myTex texture to the entity
 	//void addTexture(std::string path);
 
+	//checks if the entity is colliding with another entity
+	bool isColliding(Entity* other);
+
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;
 private:

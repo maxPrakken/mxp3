@@ -51,6 +51,18 @@ void Entity::removechild(Entity * child)
 	}
 }
 
+bool Entity::isColliding(Entity* other) {
+	float dx = this->pos->x - other->pos->x;
+	float dy = this->pos->y - other->pos->y;
+
+	if ((abs(dx) * 2.0f < (scale->x + other->scale->x)) &&
+		(abs(dy) * 2.0f < (scale->y + other->scale->y)))
+	{
+		return true;
+	}
+	return false;
+}
+
 /*
 void Entity::addTexture(std::string path)
 {
