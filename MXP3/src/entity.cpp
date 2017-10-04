@@ -7,7 +7,7 @@ Entity::Entity(SDL_Renderer* renderer)
 	_guid = _nextGuid;
 	_nextGuid++;
 	this->_parent = NULL;
-	myTex = new Texture();
+	myTex = new Texture(renderer, "assets/INA.tga");
 
 	pos = new Vector2(0, 0);
 	scale = new Vector2(100, 100);
@@ -16,6 +16,8 @@ Entity::Entity(SDL_Renderer* renderer)
 Entity::~Entity()
 {
 	delete myTex;
+	delete pos;
+	delete scale;
 }
 
 void Entity::update(double deltatime)
@@ -33,7 +35,6 @@ void Entity::addchild(Entity* child)
 	}
 	child->_parent = this;
 	this->childrenVec.push_back(child);
-	//Renderer::getInstance()->showTexture(myTex->tex);
 }
 
 void Entity::removechild(Entity * child)
@@ -48,4 +49,9 @@ void Entity::removechild(Entity * child)
 			++it;
 		}
 	}
+}
+
+void Entity::addTexture(std::string path)
+{
+	myTex = new Texture(Renderer::getInstance()->getRenderer(), path);
 }

@@ -4,14 +4,15 @@
 Scene::Scene(SDL_Renderer * renderer) : Entity(renderer)
 {
 	pic = new Entity(Renderer::getInstance()->getRenderer());
-	pic->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
-
+	
+	pic->addTexture("assets/INA.tga");
 	this->addchild(pic);
 	pic->pos = new Vector2(200, 300);
 }
 
 Scene::~Scene()
 {
+	delete pic;
 }
 
 void Scene::update(double deltatime)
