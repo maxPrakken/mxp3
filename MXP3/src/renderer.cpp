@@ -157,6 +157,12 @@ Texture* Renderer::GetImage(std::string path)
 	}
 	Texture* t = new Texture(getRenderer(), path);
 	imageBlob.emplace(path, t);
+	if (t->tex == NULL)
+	{
+		std::cout << "Image file not found: these are not the images you're looking for" << std::endl;
+		delete t;
+		return NULL;
+	}
 	return t;
 }
 

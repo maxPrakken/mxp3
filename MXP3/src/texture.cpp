@@ -11,7 +11,9 @@ Texture::Texture(SDL_Renderer* renderer, std::string path)
 
 Texture::~Texture()
 {
-	SDL_DestroyTexture(tex);
+	if (tex != NULL) {
+		SDL_DestroyTexture(tex);
+	}
 }
 
 SDL_Texture * Texture::loadTexture(SDL_Renderer* renderer, std::string path)

@@ -6,7 +6,6 @@
 
 class __declspec(dllexport) Scene : public Entity {
 public:
-	//test comment for the sake of science
 	//default constuctor
 	Scene();
 	//deconstructor
@@ -17,9 +16,6 @@ public:
 	
 	//places entity in the absolute middle of the window
 	Vector2* placeCenter(Entity* entity);
-
-	Entity* pic;
-	Entity* pic2;
 
 private:
 	//update the children of the scene

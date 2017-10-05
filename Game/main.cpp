@@ -2,7 +2,7 @@
 #include <texture.h>
 #include <SDL2\SDL.h>
 #include <input.h>
-#include <scene.h>
+#include "myScene.h"
 
 #include "../MXP3/include/entity.h"
 
@@ -11,7 +11,7 @@ Input* Input::instance = NULL;
 #undef main
 int main(int argc, char *argv[])
 {
-	Scene* scene = new Scene();
+	MyScene* scene = new MyScene();
 
 	while (!Input::getInstance()->getMustQuit())
 	{
