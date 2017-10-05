@@ -6,6 +6,7 @@
 
 class __declspec(dllexport) Scene : public Entity {
 public:
+	//test comment for the sake of science
 	//default constuctor
 	Scene();
 	//deconstructor
