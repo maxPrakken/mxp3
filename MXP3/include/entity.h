@@ -2,10 +2,8 @@
 
 #include <iostream>
 
-#include "texture.h"
 #include "vector2.h"
 
-#include <SDL2/SDL.h>
 #include <vector>
 
 class Renderer;
@@ -14,14 +12,14 @@ class __declspec(dllexport) Entity {
 public:
 
 	//default constructor en deconstructor
-	Entity(SDL_Renderer* renderer);
+	Entity();
 	virtual ~Entity();
 
 	//update function that updates every frame
 	virtual void update(double deltatime);
 
 	//texture of the entity
-	Texture* myTex;
+	std::string texturePath;
 
 	//position and scale of the entity
 	Vector2* pos;
@@ -31,8 +29,6 @@ public:
 	void addchild(Entity* child);
 	//removechild function, removes it from the window and parent
 	void removechild(Entity* child);
-	//addtexture function, add the myTex texture to the entity
-	//void addTexture(std::string path);
 
 	//checks if the entity is colliding with another entity
 	bool isColliding(Entity* other);

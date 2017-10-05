@@ -1,17 +1,18 @@
 #include "../include/scene.h"
 
 
-Scene::Scene(SDL_Renderer * renderer) : Entity(renderer)
+Scene::Scene() : Entity()
 {
-	pic = new Entity(Renderer::getInstance()->getRenderer());
+	texturePath = "";
+	pic = new Entity();
 
-	pic2 = new Entity(Renderer::getInstance()->getRenderer());
-	pic2->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
+	pic2 = new Entity();
+	pic2->texturePath = "assets/INA.tga";
 	this->addchild(pic2);
 	pic2->scale = new Vector2(100, 100);
 	pic2->pos = new Vector2(400, 0);
 
-	pic->myTex = new Texture(Renderer::getInstance()->getRenderer(), "assets/INA.tga");
+	pic->texturePath = "assets/INA.tga";
 	this->addchild(pic);
 	pic->scale = new Vector2(100, 100);
 	pic->pos = placeCenter(pic);

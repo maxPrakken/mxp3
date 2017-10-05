@@ -11,7 +11,7 @@ public:
 	//default constructor
 	Texture();
 	//constructor overloader that takes path to texture
-	Texture(SDL_Renderer* renderer, std::string string);
+	Texture(SDL_Renderer* renderer, std::string path);
 	//deconstructor
 	virtual ~Texture();
 	//loadtexture function. draws the texture on the window

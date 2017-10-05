@@ -7,7 +7,7 @@
 class __declspec(dllexport) Scene : public Entity {
 public:
 	//default constuctor
-	Scene(SDL_Renderer* renderer);
+	Scene();
 	//deconstructor
 	virtual ~Scene();
 

@@ -2,12 +2,12 @@
 
 int Entity::_nextGuid = 0;
 
-Entity::Entity(SDL_Renderer* renderer)
+Entity::Entity()
 {
 	_guid = _nextGuid;
 	_nextGuid++;
 	this->_parent = NULL;
-	myTex = new Texture();
+	texturePath = "assets/INA.tga";
 
 	pos = new Vector2(0, 0);
 	scale = new Vector2(100, 100);
@@ -15,7 +15,6 @@ Entity::Entity(SDL_Renderer* renderer)
 
 Entity::~Entity()
 {
-	delete myTex;
 	delete pos;
 	delete scale;
 }
@@ -60,11 +59,6 @@ bool Entity::isColliding(Entity* other) {
 	{
 		return true;
 	}
-	return false;
+	return false;	
 }
 
-/*
-void Entity::addTexture(std::string path)
-{
-	myTex = new Texture(Renderer::getInstance()->getRenderer(), path);
-}*/

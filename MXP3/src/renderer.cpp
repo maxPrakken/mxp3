@@ -58,7 +58,7 @@ Renderer::Renderer(int rX, int rY)
 		exit(-2);
 	}
 
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, 0);
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
 		SDL_DestroyWindow(window);
@@ -105,7 +105,7 @@ void Renderer::update()
 
 void Renderer::renderEntity(Entity* entity)
 {
-	Texture* texture = entity->myTex;
+	Texture* texture = GetImage(entity->texturePath);
 
 	if (texture != NULL) {
 		SDL_Rect r;
@@ -139,9 +139,38 @@ void Renderer::renderScene(Entity * entity)
 
 void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 {
-	if (texture->tex != NULL){
+	if (texture->tex != NULL) {
 		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, 0, 0, SDL_FLIP_NONE);
 	}
+}
+
+Texture* Renderer::GetImage(std::string path)
+{
+	if (path == "") 
+	{
+		return NULL;
+	}
+	std::map<std::string, Texture*>::iterator it = imageBlob.find(path);
+	if (it != imageBlob.end())
+	{
+		return it->second;
+	}
+	Texture* t = new Texture(getRenderer(), path);
+	imageBlob.emplace(path, t);
+	return t;
+}
+
+void Renderer::destroyTexture(std::string path)
+{
+	std::map<std::string, Texture*>::iterator it = imageBlob.find(path);
+	if (it != imageBlob.end())
+	{
+		Texture* texture = imageBlob[path];
+		imageBlob.erase(path);
+		delete texture;
+		return;
+	}
+	std::cout << "Image not found: its over anakin, i have the high ground" << std::endl;
 }
 
 void Renderer::calculateDeltatime()

@@ -4,9 +4,9 @@ Texture::Texture()
 {
 }
 
-Texture::Texture(SDL_Renderer* renderer, std::string string)
+Texture::Texture(SDL_Renderer* renderer, std::string path)
 {
-	tex = loadTexture(renderer,string);
+	tex = loadTexture(renderer, path);
 }
 
 Texture::~Texture()
@@ -22,7 +22,7 @@ SDL_Texture * Texture::loadTexture(SDL_Renderer* renderer, std::string path)
 		std::cout << "Could not load image: " << IMG_GetError() << std::endl;
 		return NULL;
 	}
-	SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer,surf);
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, surf);
 	SDL_FreeSurface(surf);
 	std::cout << "Image loaded: " << path << std::endl;
 	return tex;

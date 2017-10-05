@@ -11,7 +11,7 @@ Input* Input::instance = NULL;
 #undef main
 int main(int argc, char *argv[])
 {
-	Scene* scene = new Scene(Renderer::getInstance()->getRenderer());
+	Scene* scene = new Scene();
 
 	while (!Input::getInstance()->getMustQuit())
 	{

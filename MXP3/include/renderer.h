@@ -3,8 +3,9 @@
 #include <iostream>
 #include <SDL2\SDL.h>
 #include <SDL2\SDL_image.h>
-
+#include <map>
 #include "entity.h"
+#include "texture.h"
 
 //singleton renderer
 class __declspec(dllexport) Renderer
@@ -28,6 +29,10 @@ public:
 	Vector2 getResolution() { return Vector2(resX, resY); }
 	//gets deltatime
 	double getDeltatime() { return deltatime; }
+	//Get/Add an image to your imageBlob
+	Texture *GetImage(std::string path);
+	//Destroy an image that
+	void destroyTexture(std::string path);
 	//retrieves the instance of the renderer
 	SDL_Renderer* getRenderer() {
 		return renderer;
@@ -51,6 +56,10 @@ private:
 
 	//calculate deltatime function.
 	void calculateDeltatime();
+
+
+	//Map holding all the images
+	std::map<std::string, Texture*> imageBlob;
 
 	//sdl window and renderer instances
 	SDL_Window* window;
