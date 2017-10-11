@@ -4,29 +4,50 @@ Audio* Audio::instance = NULL;
 
 Audio::Audio()
 {
-	//initialize SDL audio mixer
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	//load audio files
-	sound = Mix_LoadWAV(MUS_PATH);
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
+		printf("mixer initialization error: ", Mix_GetError());
+	}
 }
 
 Audio::~Audio()
-{ 
-	Mix_FreeChunk(sound);
-	Mix_CloseAudio();
+{
+	Mix_Quit();
 }
 
 void Audio::update()
 {
-	
+
 }
 
-void Audio::playAudio()
+void Audio::playAudio(std::string filename, int loop, int channel)
 {
-	Mix_PlayChannel(-1, sound, 0);
-	std::cout << "am i playing sound?" << std::endl;
+	if (Mix_PlayChannel(channel, getChunk(filename), loop) == -1)
+	{
+		printf("Audio not working due to: ", Mix_GetError());
+	}
 }
 
+void Audio::pauseAudio()
+{
+}
+
+void Audio::resumeAudio()
+{
+}
+
+Mix_Chunk * Audio::getChunk(std::string filename)
+{
+	std::string fullpath = SDL_GetBasePath();
+	fullpath.append("../Game/assets/audio/" + filename);
+
+	if (sounds[fullpath] == NULL) {
+		sounds[fullpath] = Mix_LoadWAV(fullpath.c_str());
+		if (sounds[fullpath] == NULL) {
+			printf("sounds loading error: File-%s Error -&s", filename.c_str(), Mix_GetError());
+		}
+	}
+	return sounds[fullpath];
+}
 
 Audio * Audio::getInstance()
 {

@@ -20,7 +20,11 @@ Input::Input() {
 	}
 }
 
-Input::~Input() {}
+Input::~Input() {
+	if (instance != NULL) {
+		delete instance;
+	}
+}
 
 Input *Input::getInstance() {
 	if (Input::instance == NULL) {

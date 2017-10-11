@@ -15,7 +15,7 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-	
+	delete _parent;
 }
 
 void Entity::update(double deltatime)

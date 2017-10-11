@@ -74,6 +74,8 @@ Renderer::~Renderer()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+	delete window;
+	delete renderer;
 }
 
 Renderer * Renderer::getInstance()

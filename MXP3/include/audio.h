@@ -1,30 +1,28 @@
 #pragma once
 
-//#include <SDL2\SDL_audio.h>
+#include <SDL2\SDL.h>
 #include <SDL2\SDL_mixer.h>
 #include <iostream>
-
-#define MUS_PATH "test.wav"
+#include <map>
 
 //singleton audio
 class _declspec(dllexport) Audio {
 public:
 	static Audio* getInstance();
-	Audio();
+
 	virtual void update();
 
-	Audio* getAudio() {
-		return audio;
-	}
+	void playAudio(std::string filename, int loop = -1, int channel = 0);
+	void pauseAudio();
+	void resumeAudio();
 
-	Mix_Chunk* sound;
+	std::map<std::string, Mix_Chunk*> sounds;
 
-	void playAudio();
+	Mix_Chunk * getChunk(std::string filename);
 
 private:
 	static Audio* instance;
 
-	//Audio();
+	Audio();
 	virtual ~Audio();
-	Audio* audio;
 };

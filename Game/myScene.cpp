@@ -23,6 +23,7 @@ MyScene::MyScene() : Scene()
 MyScene::~MyScene()
 {
 	delete pic;
+	delete pic2;
 }
 
 void MyScene::update(double deltatime)
@@ -45,6 +46,11 @@ void MyScene::update(double deltatime)
 	}
 	if (Input::getInstance()->getKey(SDLK_d)) {
 		pic->pos += Vector2(100, 0) * deltatime;
+	}
+
+	if (Input::getInstance()->getKeyDown(SDLK_i))
+	{
+		Audio::getInstance()->playAudio("test.wav", 0, -1);
 	}
 	//============================================
 }
