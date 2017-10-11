@@ -4,6 +4,7 @@
 Scene::Scene() : Entity()
 {
 	texturePath = "";
+	Audio::getInstance()->playAudio();
 }
 
 Scene::~Scene()

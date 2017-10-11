@@ -4,6 +4,8 @@
 #include "renderer.h"
 #include "input.h"
 
+#include "audio.h"
+
 class __declspec(dllexport) Scene : public Entity {
 public:
 	//default constuctor
