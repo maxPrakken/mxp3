@@ -9,14 +9,13 @@ Entity::Entity()
 	this->_parent = NULL;
 	texturePath = "assets/INA.tga";
 
-	pos = new Vector2(0, 0);
-	scale = new Vector2(100, 100);
+	pos = Vector2(0, 0);
+	scale = Vector2(100, 100);
 }
 
 Entity::~Entity()
 {
-	delete pos;
-	delete scale;
+	
 }
 
 void Entity::update(double deltatime)
@@ -51,11 +50,11 @@ void Entity::removechild(Entity * child)
 }
 
 bool Entity::isColliding(Entity* other) {
-	float dx = this->pos->x - other->pos->x;
-	float dy = this->pos->y - other->pos->y;
+	float dx = this->pos.x - other->pos.x;
+	float dy = this->pos.y - other->pos.y;
 
-	if ((abs(dx) * 2.0f < (scale->x + other->scale->x)) &&
-		(abs(dy) * 2.0f < (scale->y + other->scale->y)))
+	if ((abs(dx) * 2.0f < (scale.x + other->scale.x)) &&
+		(abs(dy) * 2.0f < (scale.y + other->scale.y)))
 	{
 		return true;
 	}

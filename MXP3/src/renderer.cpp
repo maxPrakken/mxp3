@@ -109,13 +109,13 @@ void Renderer::renderEntity(Entity* entity)
 
 	if (texture != NULL) {
 		SDL_Rect r;
-		if (entity->pos != NULL) {
-			r.x = entity->pos->x;
-			r.y = entity->pos->y;
+		if (&entity->pos != NULL) {
+			r.x = entity->pos.x;
+			r.y = entity->pos.y;
 		}
-		if (entity->scale != NULL) {
-			r.h = entity->scale->y;
-			r.w = entity->scale->x;
+		if (&entity->scale != NULL) {
+			r.h = entity->scale.y;
+			r.w = entity->scale.x;
 		}
 		renderTexture(texture, &r);
 	}

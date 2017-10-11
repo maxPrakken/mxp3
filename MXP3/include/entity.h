@@ -22,8 +22,8 @@ public:
 	std::string texturePath;
 
 	//position and scale of the entity
-	Vector2* pos;
-	Vector2* scale;
+	Vector2 pos;
+	Vector2 scale;
 
 	//addchild function. add it to the window and parent
 	void addchild(Entity* child);

@@ -16,9 +16,9 @@ void Scene::update(double deltatime)
 	updateChildren(deltatime);
 }
 
-Vector2* Scene::placeCenter(Entity* entity)
+Vector2 Scene::placeCenter(Entity* entity)
 {
-	return new Vector2((Renderer::getInstance()->getResolution().x / 2) - (entity->scale->x / 2), (Renderer::getInstance()->getResolution().y / 2) - (entity->scale->x / 2));
+	return Vector2((Renderer::getInstance()->getResolution().x / 2) - (entity->scale.x / 2), (Renderer::getInstance()->getResolution().y / 2) - (entity->scale.x / 2));
 }
 
 void Scene::updateChildren(float deltatime)

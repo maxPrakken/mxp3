@@ -15,7 +15,7 @@ public:
 	void update(double deltatime);
 	
 	//places entity in the absolute middle of the window
-	Vector2* placeCenter(Entity* entity);
+	Vector2 placeCenter(Entity* entity);
 
 private:
 	//update the children of the scene
