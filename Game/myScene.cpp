@@ -47,10 +47,32 @@ void MyScene::update(double deltatime)
 	if (Input::getInstance()->getKey(SDLK_d)) {
 		pic->pos += Vector2(100, 0) * deltatime;
 	}
+	//============================================
 
+	//===========================================
+	//stuff i use to get sounds working properly
+
+	//play audio
 	if (Input::getInstance()->getKeyDown(SDLK_i))
 	{
-		Audio::getInstance()->playAudio("test.wav", 0, -1);
+		Audio::getInstance()->playAudio("test2.wav");
+	}
+	if (Input::getInstance()->getKeyDown(SDLK_o))
+	{
+		Audio::getInstance()->playAudio("test3.wav");
+	}
+
+	//pause and resume audio
+	if (Input::getInstance()->getKeyDown(SDLK_p))
+	{
+		Audio::getInstance()->pauseAudio(-1);
+		//Audio::getInstance()->pauseAudio(0);
+	}
+	if (Input::getInstance()->getKeyDown(SDLK_l))
+	{
+		Audio::getInstance()->resumeAudio(-1);
+		//Audio::getInstance()->resumeAudio(0);
 	}
 	//============================================
+
 }

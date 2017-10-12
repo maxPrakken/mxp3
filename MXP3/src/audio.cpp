@@ -4,7 +4,7 @@ Audio* Audio::instance = NULL;
 
 Audio::Audio()
 {
-	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
 		printf("mixer initialization error: ", Mix_GetError());
 	}
 }
@@ -19,6 +19,14 @@ void Audio::update()
 
 }
 
+void Audio::playAudio(std::string filename)
+{
+	if (Mix_PlayChannel(-1, getChunk(filename), 0) == -1)
+	{
+		printf("Audio not working due to: ", Mix_GetError());
+	}
+}
+
 void Audio::playAudio(std::string filename, int loop, int channel)
 {
 	if (Mix_PlayChannel(channel, getChunk(filename), loop) == -1)
@@ -27,12 +35,14 @@ void Audio::playAudio(std::string filename, int loop, int channel)
 	}
 }
 
-void Audio::pauseAudio()
+void Audio::pauseAudio(int channel)
 {
+	Mix_Pause(channel);
 }
 
-void Audio::resumeAudio()
+void Audio::resumeAudio(int channel)
 {
+	Mix_Resume(channel);
 }
 
 Mix_Chunk * Audio::getChunk(std::string filename)
