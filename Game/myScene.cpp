@@ -33,6 +33,12 @@ void MyScene::update(double deltatime)
 		std::cout << "colliding" << std::endl;
 	}
 
+	movement(deltatime);
+	audioController();
+}
+
+void MyScene::movement(double deltatime)
+{
 	//player movement, to be taken out soon
 	//============================================
 	if (Input::getInstance()->getKey(SDLK_w)) {
@@ -48,31 +54,29 @@ void MyScene::update(double deltatime)
 		pic->pos += Vector2(100, 0) * deltatime;
 	}
 	//============================================
+}
 
+void MyScene::audioController()
+{
 	//===========================================
-	//stuff i use to get sounds working properly
+	//sound testing
 
 	//play audio
-	if (Input::getInstance()->getKeyDown(SDLK_i))
-	{
-		Audio::getInstance()->playAudio("test2.wav");
-	}
 	if (Input::getInstance()->getKeyDown(SDLK_o))
 	{
 		Audio::getInstance()->playAudio("test3.wav");
 	}
 
-	//pause and resume audio
+	//pause audio
 	if (Input::getInstance()->getKeyDown(SDLK_p))
 	{
-		Audio::getInstance()->pauseAudio(-1);
+		Audio::getInstance()->pauseAudio();
 		//Audio::getInstance()->pauseAudio(0);
 	}
+	//resume audio
 	if (Input::getInstance()->getKeyDown(SDLK_l))
 	{
-		Audio::getInstance()->resumeAudio(-1);
-		//Audio::getInstance()->resumeAudio(0);
+		Audio::getInstance()->resumeAudio();
 	}
 	//============================================
-
 }

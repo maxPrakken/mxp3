@@ -7,7 +7,7 @@
 #include "entity.h"
 #include "texture.h"
 
-//singleton renderer
+// singleton renderer
 class __declspec(dllexport) Renderer
 {
 public:
@@ -25,6 +25,8 @@ public:
 	void renderScene(Entity* entity);
 	//renders texture in window
 	void renderTexture(Texture* texture, SDL_Rect* rect);
+	//renders spritesheet in scene
+	void renderSpritesheet(Texture* texture, SDL_Rect* chunk, SDL_Rect* rect);
 	//gets resolution
 	Vector2 getResolution() { return Vector2(resX, resY); }
 	//gets deltatime

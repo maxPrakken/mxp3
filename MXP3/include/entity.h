@@ -20,6 +20,8 @@ public:
 
 	//texture of the entity
 	std::string texturePath;
+	//spritesheet of the entity
+	std::string spitesheetPath;
 
 	//position and scale of the entity
 	Vector2 pos;

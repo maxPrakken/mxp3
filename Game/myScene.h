@@ -11,6 +11,9 @@ public:
 	Entity* pic;
 	Entity* pic2;
 
+	void movement(double deltatime);
+	void audioController();
+
 private:
 
 };

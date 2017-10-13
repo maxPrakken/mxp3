@@ -107,7 +107,18 @@ void Renderer::update()
 
 void Renderer::renderEntity(Entity* entity)
 {
-	Texture* texture = GetImage(entity->texturePath);
+	bool isSpritesheet = false;
+	Texture* texture;
+
+	//makes difference between texturepath and spritesheet path
+	if (entity->texturePath != "" && entity->spitesheetPath == "") {
+		texture = GetImage(entity->texturePath);
+		isSpritesheet = false;
+	}
+	else if (entity->texturePath == "" && entity->spitesheetPath != "") {
+		texture = GetImage(entity->spitesheetPath);
+		isSpritesheet = true;
+	}
 
 	if (texture != NULL) {
 		SDL_Rect r;
@@ -119,7 +130,10 @@ void Renderer::renderEntity(Entity* entity)
 			r.h = entity->scale.y;
 			r.w = entity->scale.x;
 		}
-		renderTexture(texture, &r);
+		if (!isSpritesheet) {
+			renderTexture(texture, &r);
+		}
+		//else { renderSpritesheet(texture, chunk, &r); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -143,6 +157,12 @@ void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 {
 	if (texture->tex != NULL) {
 		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, 0, 0, SDL_FLIP_NONE);
+	}
+}
+
+void Renderer::renderSpritesheet(Texture* texture, SDL_Rect* chunk, SDL_Rect* rect) {
+	if (texture->tex != NULL) {
+		SDL_RenderCopyEx(renderer, texture->tex, chunk, rect, 0, 0, SDL_FLIP_NONE);
 	}
 }
 

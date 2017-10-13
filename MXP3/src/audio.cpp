@@ -35,9 +35,17 @@ void Audio::playAudio(std::string filename, int loop, int channel)
 	}
 }
 
+void Audio::pauseAudio() {
+	Mix_Pause(-1);
+}
+
 void Audio::pauseAudio(int channel)
 {
 	Mix_Pause(channel);
+}
+
+void Audio::resumeAudio() {
+	Mix_Resume(-1);
 }
 
 void Audio::resumeAudio(int channel)

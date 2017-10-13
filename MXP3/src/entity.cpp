@@ -7,7 +7,8 @@ Entity::Entity()
 	_guid = _nextGuid;
 	_nextGuid++;
 	this->_parent = NULL;
-	texturePath = "assets/INA.tga";
+	texturePath = "";
+	spitesheetPath = "";
 
 	pos = Vector2(0, 0);
 	scale = Vector2(100, 100);
