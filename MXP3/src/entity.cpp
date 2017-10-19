@@ -57,7 +57,7 @@ Vector2 Entity::getParentPosition()
 		return pos;
 	}
 	else {
-		return pos + _parent->pos;
+		return pos + _parent->getParentPosition();
 	}
 }
 
