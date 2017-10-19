@@ -7,6 +7,11 @@ Texture::Texture()
 Texture::Texture(SDL_Renderer* renderer, std::string path)
 {
 	tex = loadTexture(renderer, path);
+	Uint32 i = 0;
+	int a = 0;
+	int w, h;
+	SDL_QueryTexture(tex, &i, &a, &w, &h);
+	_resolution = Vector2(w, h);
 }
 
 Texture::~Texture()
@@ -25,7 +30,8 @@ SDL_Texture * Texture::loadTexture(SDL_Renderer* renderer, std::string path)
 		return NULL;
 	}
 	SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, surf);
-	SDL_FreeSurface(surf);
+	
+		SDL_FreeSurface(surf);
 	std::cout << "Image loaded: " << path << std::endl;
 	return tex;
 }

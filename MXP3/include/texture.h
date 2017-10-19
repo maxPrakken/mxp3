@@ -4,6 +4,7 @@
 #include <SDL2\SDL_image.h>
 #include <string>
 #include <iostream>
+#include "vector2.h"
 
 class __declspec(dllexport) Texture
 {
@@ -18,6 +19,10 @@ public:
 	static SDL_Texture* loadTexture(SDL_Renderer* renderer, std::string path);
 	//instance of sdl texture to pass to the renderer
 	SDL_Texture* tex;
+	Vector2 Resolution() {
+		return _resolution;
+	}
 
 protected:
+	Vector2 _resolution;
 };

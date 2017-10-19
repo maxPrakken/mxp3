@@ -9,15 +9,16 @@ MyScene::MyScene() : Scene()
 	pic = new Entity();
 	pic2 = new Entity();
 
-	pic2->texturePath = "assets/INA.tga";
-	this->addchild(pic2);
-	pic2->scale = Vector2(100, 100);
-	pic2->pos = Vector2(400, 0);
-
 	pic->texturePath = "assets/INA.tga";
 	this->addchild(pic);
-	pic->scale = Vector2(100, 100);
+	pic->size = Vector2(100, 100);
 	pic->pos = placeCenter(pic);
+
+	pic2->texturePath = "assets/INA.tga";
+	pic->addchild(pic2);
+	pic2->size = Vector2(100, 100);
+	pic2->pos = Vector2(128, 0);
+
 }
 
 MyScene::~MyScene()

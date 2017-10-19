@@ -6,12 +6,13 @@ Entity::Entity()
 {
 	_guid = _nextGuid;
 	_nextGuid++;
-	this->_parent = NULL;
+	_parent = NULL;
 	texturePath = "";
 	spitesheetPath = "";
 
+	animator = Animator();
 	pos = Vector2(0, 0);
-	scale = Vector2(100, 100);
+	size = Vector2(100, 100);
 }
 
 Entity::~Entity()
@@ -50,12 +51,22 @@ void Entity::removechild(Entity * child)
 	}
 }
 
+Vector2 Entity::getParentPosition()
+{
+	if (_parent == NULL) {
+		return pos;
+	}
+	else {
+		return pos + _parent->pos;
+	}
+}
+
 bool Entity::isColliding(Entity* other) {
 	float dx = this->pos.x - other->pos.x;
 	float dy = this->pos.y - other->pos.y;
 
-	if ((abs(dx) * 2.0f < (scale.x + other->scale.x)) &&
-		(abs(dy) * 2.0f < (scale.y + other->scale.y)))
+	if ((abs(dx) * 2.0f < (size.x + other->size.x)) &&
+		(abs(dy) * 2.0f < (size.y + other->size.y)))
 	{
 		return true;
 	}

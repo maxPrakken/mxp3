@@ -108,7 +108,7 @@ void Renderer::update()
 void Renderer::renderEntity(Entity* entity)
 {
 	bool isSpritesheet = false;
-	Texture* texture;
+	Texture* texture = NULL;
 
 	//makes difference between texturepath and spritesheet path
 	if (entity->texturePath != "" && entity->spitesheetPath == "") {
@@ -119,16 +119,19 @@ void Renderer::renderEntity(Entity* entity)
 		texture = GetImage(entity->spitesheetPath);
 		isSpritesheet = true;
 	}
+	else if (entity->texturePath != "" && entity->spitesheetPath != "") {
+		std::cout << "ERROR: entity can't have a spritesheet and a texure at the same time" << std::endl;
+	}
 
 	if (texture != NULL) {
 		SDL_Rect r;
 		if (&entity->pos != NULL) {
-			r.x = entity->pos.x;
-			r.y = entity->pos.y;
+			r.x = entity->getParentPosition().x;
+			r.y = entity->getParentPosition().y;
 		}
-		if (&entity->scale != NULL) {
-			r.h = entity->scale.y;
-			r.w = entity->scale.x;
+		if (&entity->size != NULL) {
+			r.h = entity->size.y;
+			r.w = entity->size.x;
 		}
 		if (!isSpritesheet) {
 			renderTexture(texture, &r);
@@ -139,6 +142,7 @@ void Renderer::renderEntity(Entity* entity)
 	while (it != entity->childrenVec.end())
 	{
 		renderEntity((*it));
+		entity->update(deltatime);
 		it++;
 	}
 }

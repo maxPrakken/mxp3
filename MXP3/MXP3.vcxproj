@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\animator.cpp" />
     <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\input.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="src\vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\animator.h" />
     <ClInclude Include="include\audio.h" />
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\input.h" />
