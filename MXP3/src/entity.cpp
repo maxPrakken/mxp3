@@ -22,7 +22,13 @@ Entity::~Entity()
 
 void Entity::update(double deltatime)
 {
-
+	animator.update(deltatime);
+	std::vector<Entity*>::iterator it = childrenVec.begin();
+	while (it != childrenVec.end())
+	{
+		(*it)->update(deltatime);
+		it++;
+	}
 }
 
 void Entity::addchild(Entity* child)

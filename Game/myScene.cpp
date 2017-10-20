@@ -19,7 +19,7 @@ MyScene::MyScene() : Scene()
 	pic2->size = Vector2(100, 100);
 	pic2->pos = Vector2(128, 0);
 	pic2->animator.rows = Vector2(4, 1);
-	pic2->animator.animateFromTo = Vector2(2, 4);
+	pic2->animator.animateFromTo = Vector2(0, 3);
 	//pic2->animator.paused = true;
 }
 
@@ -31,11 +31,11 @@ MyScene::~MyScene()
 
 void MyScene::update(double deltatime)
 {
+	Scene::update(deltatime);
 	//checks if entity is colliding with other entity
 	if (pic->isColliding(pic2)) {
 		std::cout << "colliding" << std::endl;
 	}
-
 	movement(deltatime);
 	audioController();
 }

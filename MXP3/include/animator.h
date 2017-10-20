@@ -19,11 +19,14 @@ public:
 
 	int getCurrentChunk();
 
-	int playAnimation(int start, int* current, int end);
 	int start;
 	int cur;
 	bool paused;
-	
+
+	double timer;
+	double switchAfter;
+	int playAnimation(int start, int* current, int end);
+
 	Vector2 animateFromTo;
 	SDL_Rect getChuck(Vector2 position, Vector2 resolution);
 

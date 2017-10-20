@@ -9,6 +9,9 @@ Animator::Animator()
 
 	animateFromTo = Vector2(0, 0);
 	start = animateFromTo.x;
+
+	timer = 0;
+	switchAfter = 0.5;
 }
 
 
@@ -23,6 +26,7 @@ Animator::~Animator()
 
 void Animator::update(double deltatime)
 {
+	timer += deltatime;
 	getCurrentChunk();
 }
 
@@ -31,7 +35,7 @@ int Animator::getCurrentChunk()
 	if (i != rows.x && !paused) {
 		i++;
 	}
-	else if(i == rows.x && !paused) {
+	else if (i == rows.x && !paused) {
 		i = 0;
 	}
 	else if (paused) {
@@ -42,17 +46,20 @@ int Animator::getCurrentChunk()
 
 int Animator::playAnimation(int start, int* current, int end)
 {
-	if ((*current) != end && !paused) {
-		(*current)++;
-	}
-	else if ((*current) == end && !paused) {
-		(*current) = start;
-	}
-	else if (paused) {
+	if (timer > switchAfter) {
+		timer = fmod(timer, switchAfter);
+		if ((*current) != end && !paused) {
+			(*current)++;
+		}
+		else if ((*current) == end && !paused) {
+			(*current) = start;
+		}
+		else if (paused) {
+			return (*current);
+		}
 		return (*current);
 	}
 	return (*current);
-	
 }
 
 SDL_Rect Animator::getChuck(Vector2 position, Vector2 resolution)
