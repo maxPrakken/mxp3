@@ -14,11 +14,12 @@ MyScene::MyScene() : Scene()
 	pic->size = Vector2(100, 100);
 	pic->pos = placeCenter(pic);
 
-	pic2->texturePath = "assets/INA.tga";
+	pic2->spitesheetPath = "assets/testSheet.tga";
 	pic->addchild(pic2);
 	pic2->size = Vector2(100, 100);
 	pic2->pos = Vector2(128, 0);
-
+	pic2->animator.rows = Vector2(4, 1);
+	pic2->animator.paused = true;
 }
 
 MyScene::~MyScene()

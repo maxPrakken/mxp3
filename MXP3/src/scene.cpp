@@ -27,6 +27,7 @@ void Scene::updateChildren(float deltatime)
 	while (it != childrenVec.end())
 	{
 		(*it)->update(deltatime);
+		(*it)->animator.update(deltatime);
 		it++;
 	}
 }

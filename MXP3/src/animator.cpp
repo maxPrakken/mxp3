@@ -3,28 +3,42 @@
 Animator::Animator()
 {
 	rows = Vector2();
-	textureToAnimate = NULL;
+	i = 0;
+	paused = false;
 }
 
-Animator::Animator(Texture* texture)
-{
-	textureToAnimate = texture;
-	rows = Vector2(0, 0);
-}
 
-Animator::Animator(Texture* texture, Vector2 rows)
+Animator::Animator(Vector2 rows)
 {
-	textureToAnimate = texture;
-	this->rows = rows;
+	this->rows;
 }
 
 Animator::~Animator()
 {
 }
 
-SDL_Rect * Animator::getChuck(Vector2 position)
+void Animator::update(double deltatime)
 {
-	Vector2 res = textureToAnimate->Resolution();
+	getCurrentChunk();
+}
+
+int Animator::getCurrentChunk()
+{
+	if (i != rows.x && !paused) {
+		i++;
+	}
+	else if(i = rows.x && !paused) {
+		i = 0;
+	}
+	else if (paused) {
+		return i;
+	}
+	return i;
+}
+
+SDL_Rect Animator::getChuck(Vector2 position, Vector2 resolution)
+{
+	Vector2 res = resolution;
 	float xPos = res.x / rows.x;
 	float yPos = res.y / rows.y;
 
@@ -33,5 +47,5 @@ SDL_Rect * Animator::getChuck(Vector2 position)
 	r.w = xPos;
 	r.x = xPos * position.x;
 	r.y = yPos * position.y;
-	return nullptr;
+	return r;
 }

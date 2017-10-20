@@ -29,7 +29,7 @@ Renderer::Renderer()
 		exit(-2);
 	}
 
-	renderer = SDL_CreateRenderer(window, -1, NULL);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
 		SDL_DestroyWindow(window);
@@ -136,7 +136,7 @@ void Renderer::renderEntity(Entity* entity)
 		if (!isSpritesheet) {
 			renderTexture(texture, &r);
 		}
-		//else { renderSpritesheet(texture, chunk, &r); }
+		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.getCurrentChunk(), 0), texture->Resolution()), &r); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -164,15 +164,15 @@ void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 	}
 }
 
-void Renderer::renderSpritesheet(Texture* texture, SDL_Rect* chunk, SDL_Rect* rect) {
+void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect) {
 	if (texture->tex != NULL) {
-		SDL_RenderCopyEx(renderer, texture->tex, chunk, rect, 0, 0, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, SDL_FLIP_NONE);
 	}
 }
 
 Texture* Renderer::GetImage(std::string path)
 {
-	if (path == "") 
+	if (path == "")
 	{
 		return NULL;
 	}

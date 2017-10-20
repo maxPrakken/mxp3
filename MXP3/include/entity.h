@@ -49,6 +49,7 @@ public:
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;
 private:
+
 	//parent entity
 	Entity* _parent;
 
