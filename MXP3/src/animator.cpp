@@ -4,7 +4,11 @@ Animator::Animator()
 {
 	rows = Vector2();
 	i = 0;
+	cur = 1;
 	paused = false;
+
+	animateFromTo = Vector2(0, 0);
+	start = animateFromTo.x;
 }
 
 
@@ -27,13 +31,28 @@ int Animator::getCurrentChunk()
 	if (i != rows.x && !paused) {
 		i++;
 	}
-	else if(i = rows.x && !paused) {
+	else if(i == rows.x && !paused) {
 		i = 0;
 	}
 	else if (paused) {
 		return i;
 	}
 	return i;
+}
+
+int Animator::playAnimation(int start, int* current, int end)
+{
+	if ((*current) != end && !paused) {
+		(*current)++;
+	}
+	else if ((*current) == end && !paused) {
+		(*current) = start;
+	}
+	else if (paused) {
+		return (*current);
+	}
+	return (*current);
+	
 }
 
 SDL_Rect Animator::getChuck(Vector2 position, Vector2 resolution)

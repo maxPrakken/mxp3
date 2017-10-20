@@ -136,7 +136,7 @@ void Renderer::renderEntity(Entity* entity)
 		if (!isSpritesheet) {
 			renderTexture(texture, &r);
 		}
-		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.getCurrentChunk(), 0), texture->Resolution()), &r); }
+		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y) /*entity->animator.getCurrentChunk()*/, 0), texture->Resolution()), &r); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())

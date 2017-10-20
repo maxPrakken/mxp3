@@ -19,7 +19,8 @@ MyScene::MyScene() : Scene()
 	pic2->size = Vector2(100, 100);
 	pic2->pos = Vector2(128, 0);
 	pic2->animator.rows = Vector2(4, 1);
-	pic2->animator.paused = true;
+	pic2->animator.animateFromTo = Vector2(2, 4);
+	//pic2->animator.paused = true;
 }
 
 MyScene::~MyScene()
