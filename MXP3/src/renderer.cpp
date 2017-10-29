@@ -7,8 +7,8 @@ Renderer::Renderer()
 	LAST = 0;
 	deltatime = 0;
 
-	resX = 800;
-	resY = 600;
+	resX = 1280;
+	resY = 720;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
@@ -29,7 +29,9 @@ Renderer::Renderer()
 		exit(-2);
 	}
 
+	//creates renderer and enables VSYNC
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
 		SDL_DestroyWindow(window);
@@ -50,7 +52,9 @@ Renderer::Renderer(int rX, int rY)
 		exit(-1);
 	}
 
+	//initialize window
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, resX, resY, NULL);
+
 	if (window == NULL)
 	{
 		std::cout << "failed to create window: " << SDL_GetError() << std::endl;
