@@ -156,11 +156,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="demo1.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="myScene.cpp" />
+    <ClCompile Include="exampleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="myScene.h" />
+    <ClInclude Include="demo1.h" />
+    <ClInclude Include="exampleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
