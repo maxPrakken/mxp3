@@ -2,7 +2,6 @@
 #include <texture.h>
 #include <SDL2\SDL.h>
 #include <input.h>
-#include "myScene.h"
 #include "demo1.h"
 
 #include "../MXP3/include/entity.h"
