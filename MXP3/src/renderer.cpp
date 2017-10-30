@@ -46,6 +46,7 @@ Renderer::Renderer(int rX, int rY)
 {
 	resX = rX;
 	resY = rY;
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
@@ -138,9 +139,9 @@ void Renderer::renderEntity(Entity* entity)
 			r.w = entity->size.x;
 		}
 		if (!isSpritesheet) {
-			renderTexture(texture, &r);
+			renderTexture(texture, &r, entity->flip);
 		}
-		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y) /*entity->animator.getCurrentChunk()*/, 0), texture->Resolution()), &r); }
+		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -168,9 +169,21 @@ void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 	}
 }
 
+void Renderer::renderTexture(Texture* texture, SDL_Rect* rect, SDL_RendererFlip flip)
+{
+	if (texture->tex != NULL) {
+		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, 0, 0, flip);
+	}
+}
+
 void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect) {
 	if (texture->tex != NULL) {
 		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, SDL_FLIP_NONE);
+	}
+}
+void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect, SDL_RendererFlip flip) {
+	if (texture->tex != NULL) {
+		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, flip);
 	}
 }
 

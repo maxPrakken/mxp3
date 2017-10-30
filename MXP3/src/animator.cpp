@@ -11,7 +11,8 @@ Animator::Animator()
 	start = animateFromTo.x;
 
 	timer = 0;
-	switchAfter = 0.5;
+
+	switchAfter = 0.2;
 }
 
 

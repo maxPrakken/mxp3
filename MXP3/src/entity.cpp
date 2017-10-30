@@ -10,6 +10,8 @@ Entity::Entity()
 	texturePath = "";
 	spitesheetPath = "";
 
+	flip = SDL_FLIP_NONE;
+
 	animator = Animator();
 	pos = Vector2(0, 0);
 	size = Vector2(100, 100);

@@ -2,6 +2,9 @@
 
 #include "../MXP3/include/scene.h"
 
+#include "enemy.h"
+#include "player.h"
+
 class Demo1 : public Scene{
 
 public:
@@ -14,6 +17,9 @@ public:
 
 	Entity* pic;
 	Entity* pic2;
+
+	Enemy* test;
+	Player* player;
 
 	void movement(double deltatime);
 	void audioController();

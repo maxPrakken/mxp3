@@ -7,8 +7,14 @@ Demo1::Demo1() : Scene()
 	//default value 
 	texturePath = "";
 
-	Entity* pic = new Entity();
-	Entity* pic2 = new Entity();
+	pic = new Entity();
+	pic2 = new Entity();
+
+	test = new Enemy();
+	addchild(test);
+
+	player = new Player();
+	addchild(player);
 	 
 	pic->texturePath = "assets/INA.tga";
 	this->addchild(pic);
@@ -26,7 +32,9 @@ Demo1::Demo1() : Scene()
 
 Demo1::~Demo1()
 {
-
+	delete pic;
+	delete pic2;
+	delete test;
 }
 
 void Demo1::update(double deltatime)

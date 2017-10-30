@@ -1,11 +1,8 @@
 #pragma once
 
 #include <iostream>
-
 #include "vector2.h"
-
 #include "animator.h"
-
 #include <vector>
 
 class Renderer;
@@ -48,6 +45,8 @@ public:
 
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;
+
+	SDL_RendererFlip flip;
 private:
 
 	//parent entity
