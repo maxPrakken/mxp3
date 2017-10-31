@@ -13,15 +13,6 @@ Demo1::Demo1() : Scene()
 	player = new Player();
 	addchild(player);
 	player->rot = 0;
-
-	/*
-	pic2->spitesheetPath = "assets/testSheet.tga";
-	pic->addchild(pic2);
-	pic2->size = Vector2(100, 100);
-	pic2->pos = Vector2(128, 0);
-	pic2->animator.rows = Vector2(4, 1);
-	pic2->animator.animateFromTo = Vector2(0, 3);
-	*/
 }
 
 Demo1::~Demo1()
@@ -38,7 +29,7 @@ void Demo1::update(double deltatime)
 	Scene::update(deltatime);
 
 	hitEnemy();
-	std::cout << player->rot << std::endl;
+	AI(deltatime);
 }
 
 void Demo1::audioController()
@@ -62,10 +53,19 @@ void Demo1::hitEnemy()
 	}
 }
 
-void Demo1::enemyHitPlayer()
+void Demo1::AI(double deltatime)
 {
-
+	std::vector<Enemy*>::iterator it = enemyList.begin();
+	while (it != enemyList.end()) {
+		Vector2 direction;
+		direction = player->pos - (*it)->pos;
+		direction.normalize();
+		direction *= 100.0f * deltatime;
+		(*it)->pos += direction;
+		it++;
+	}
 }
+
 
 void Demo1::spawnEnemy(Vector2 position)
 {

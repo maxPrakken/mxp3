@@ -27,7 +27,7 @@ void Enemy::animationController()
 
 void Enemy::movementController()
 {
-
+	
 }
 
 void Enemy::hit()

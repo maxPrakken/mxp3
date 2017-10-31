@@ -45,6 +45,11 @@ Vector2 Vector2::operator*(const float & oth)
 	return Vector2(x * oth, y * oth);
 }
 
+Vector2 Vector2::operator*=(const float & oth)
+{
+	return Vector2(x *= oth, y *= oth);
+}
+
 Vector2 Vector2::operator*(const double & oth)
 {
 	return Vector2(x * oth, y * oth);

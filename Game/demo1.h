@@ -21,7 +21,7 @@ public:
 
 	void hitEnemy();
 
-	void enemyHitPlayer();
+	void AI(double deltatime);
 
 	void spawnEnemy(Vector2 position);
 
