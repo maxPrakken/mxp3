@@ -25,8 +25,10 @@ public:
 	void renderScene(Entity* entity);
 	//renders texture in window
 	void renderTexture(Texture* texture, SDL_Rect* rect);
+	void renderTexture(Texture * texture, SDL_Rect * rect, SDL_RendererFlip flip, Entity* entity);
 	//renders spritesheet in scene
 	void renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect);
+	void renderSpritesheet(Texture * texture, SDL_Rect chunk, SDL_Rect * rect, SDL_RendererFlip flip, Entity* entity);
 	//gets resolution
 	Vector2 getResolution() { return Vector2(resX, resY); }
 	//gets deltatime

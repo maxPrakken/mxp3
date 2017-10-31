@@ -2,7 +2,7 @@
 #include <texture.h>
 #include <SDL2\SDL.h>
 #include <input.h>
-#include "myScene.h"
+#include "demo1.h"
 
 #include "../MXP3/include/entity.h"
 
@@ -12,12 +12,12 @@ Input* Input::instance = NULL;
 int main(int argc, char *argv[])
 {
 	Audio::getInstance();
-	MyScene* scene = new MyScene();
+	Demo1* demo1 = new Demo1();
 	while (!Input::getInstance()->getMustQuit())
 	{
 		Input::getInstance()->update();
-		scene->update(Renderer::getInstance()->getDeltatime());
-		Renderer::getInstance()->renderScene(scene);
+		demo1->update(Renderer::getInstance()->getDeltatime());
+		Renderer::getInstance()->renderScene(demo1);
 		Renderer::getInstance()->update();
 	}
 	return 0;

@@ -7,8 +7,8 @@ Renderer::Renderer()
 	LAST = 0;
 	deltatime = 0;
 
-	resX = 800;
-	resY = 600;
+	resX = 1280;
+	resY = 720;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
@@ -29,7 +29,9 @@ Renderer::Renderer()
 		exit(-2);
 	}
 
+	//creates renderer and enables VSYNC
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
 		SDL_DestroyWindow(window);
@@ -44,13 +46,16 @@ Renderer::Renderer(int rX, int rY)
 {
 	resX = rX;
 	resY = rY;
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
 		exit(-1);
 	}
 
+	//initialize window
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, resX, resY, NULL);
+
 	if (window == NULL)
 	{
 		std::cout << "failed to create window: " << SDL_GetError() << std::endl;
@@ -134,9 +139,9 @@ void Renderer::renderEntity(Entity* entity)
 			r.w = entity->size.x;
 		}
 		if (!isSpritesheet) {
-			renderTexture(texture, &r);
+			renderTexture(texture, &r, entity->flip, entity);
 		}
-		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y) /*entity->animator.getCurrentChunk()*/, 0), texture->Resolution()), &r); }
+		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip, entity); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -164,9 +169,21 @@ void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 	}
 }
 
+void Renderer::renderTexture(Texture* texture, SDL_Rect* rect, SDL_RendererFlip flip, Entity* entity)
+{
+	if (texture->tex != NULL) {
+		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, entity->rot, 0, flip);
+	}
+}
+
 void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect) {
 	if (texture->tex != NULL) {
 		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, SDL_FLIP_NONE);
+	}
+}
+void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect, SDL_RendererFlip flip, Entity* entity) {
+	if (texture->tex != NULL) {
+		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, entity->rot, 0, flip);
 	}
 }
 

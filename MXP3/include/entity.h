@@ -1,11 +1,8 @@
 #pragma once
 
 #include <iostream>
-
 #include "vector2.h"
-
 #include "animator.h"
-
 #include <vector>
 
 class Renderer;
@@ -31,11 +28,15 @@ public:
 	//position and scale of the entity
 	Vector2 pos;
 	Vector2 size;
+	double rot;
 
 	//addchild function. add it to the window and parent
 	void addchild(Entity* child);
 	//removechild function, removes it from the window and parent
 	void removechild(Entity* child);
+
+	//calculates distance between entity's
+	float distanceTo(Entity* other);
 
 	//makes the child follow their parent around
 	Vector2 getParentPosition();
@@ -48,6 +49,8 @@ public:
 
 	//vector with chilren of current entity
 	std::vector<Entity*>childrenVec;
+
+	SDL_RendererFlip flip;
 private:
 
 	//parent entity
