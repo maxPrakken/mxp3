@@ -11,7 +11,7 @@ Texture::Texture(SDL_Renderer* renderer, std::string path)
 	int a = 0;
 	int w, h;
 	SDL_QueryTexture(tex, &i, &a, &w, &h);
-	_resolution = Vector2(w, h);
+	_resolution = Vector2(w, h);	
 }
 
 Texture::~Texture()

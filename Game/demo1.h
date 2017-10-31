@@ -15,15 +15,18 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
-	Entity* pic;
-	Entity* pic2;
-
-	Enemy* test;
 	Player* player;
 
-	void movement(double deltatime);
 	void audioController();
 
-private:
+	void hitEnemy();
 
+	void enemyHitPlayer();
+
+	void spawnEnemy(Vector2 position);
+
+	std::vector<Enemy*>enemyList;
+
+private:
+	
 };

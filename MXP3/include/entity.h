@@ -28,6 +28,7 @@ public:
 	//position and scale of the entity
 	Vector2 pos;
 	Vector2 size;
+	double rot;
 
 	//addchild function. add it to the window and parent
 	void addchild(Entity* child);

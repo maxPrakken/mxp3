@@ -139,9 +139,9 @@ void Renderer::renderEntity(Entity* entity)
 			r.w = entity->size.x;
 		}
 		if (!isSpritesheet) {
-			renderTexture(texture, &r, entity->flip);
+			renderTexture(texture, &r, entity->flip, entity);
 		}
-		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip); }
+		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip, entity); }
 	}
 	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
 	while (it != entity->childrenVec.end())
@@ -169,10 +169,10 @@ void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
 	}
 }
 
-void Renderer::renderTexture(Texture* texture, SDL_Rect* rect, SDL_RendererFlip flip)
+void Renderer::renderTexture(Texture* texture, SDL_Rect* rect, SDL_RendererFlip flip, Entity* entity)
 {
 	if (texture->tex != NULL) {
-		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, 0, 0, flip);
+		SDL_RenderCopyEx(renderer, texture->tex, NULL, rect, entity->rot, 0, flip);
 	}
 }
 
@@ -181,9 +181,9 @@ void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rec
 		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, SDL_FLIP_NONE);
 	}
 }
-void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect, SDL_RendererFlip flip) {
+void Renderer::renderSpritesheet(Texture* texture, SDL_Rect chunk, SDL_Rect* rect, SDL_RendererFlip flip, Entity* entity) {
 	if (texture->tex != NULL) {
-		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, 0, 0, flip);
+		SDL_RenderCopyEx(renderer, texture->tex, &chunk, rect, entity->rot, 0, flip);
 	}
 }
 

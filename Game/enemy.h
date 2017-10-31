@@ -20,6 +20,8 @@ public:
 	//function for hitting the player
 	void hit();
 
+	int health;
+
 private:
 
 };

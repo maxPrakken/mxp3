@@ -13,8 +13,10 @@ Entity::Entity()
 	flip = SDL_FLIP_NONE;
 
 	animator = Animator();
+
 	pos = Vector2(0, 0);
 	size = Vector2(100, 100);
+	rot = 0;
 }
 
 Entity::~Entity()
@@ -70,8 +72,11 @@ Vector2 Entity::getParentPosition()
 }
 
 bool Entity::isColliding(Entity* other) {
-	float dx = this->pos.x - other->pos.x;
-	float dy = this->pos.y - other->pos.y;
+	Vector2 pos = getParentPosition();
+	Vector2 otherPos = other->getParentPosition();
+
+	float dx = pos.x - otherPos.x;
+	float dy = pos.y - otherPos.y;
 
 	if ((abs(dx) * 2.0f < (size.x + other->size.x)) &&
 		(abs(dy) * 2.0f < (size.y + other->size.y)))

@@ -17,7 +17,16 @@ public:
 
 	//slash enemies
 	void slash();
+
+	//return hasSlashed bool
+	bool getHasSlashed() { return hasSlashed; }
+
+	int health;
+
+	Entity* sword;
+
 private:
+	bool hasSlashed;
 
 	float speed;
 };
