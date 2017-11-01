@@ -14,7 +14,12 @@ public:
 	//animation controller
 	void animationController(int i);
 
+	int die(double deltatime);
+
 	int health;
+
+	bool dead;
+	bool canWalk;
 
 private:
 

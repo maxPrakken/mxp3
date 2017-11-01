@@ -19,7 +19,9 @@ public:
 
 	void audioController();
 
-	void hitEnemy();
+	void hitEnemy(double deltatime);
+
+	void enemyDie();
 
 	void AI(double deltatime);
 

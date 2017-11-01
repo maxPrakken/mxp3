@@ -38,6 +38,7 @@ void Player::movementController(double deltatime)
 	if (Input::getInstance()->getKey(SDLK_w)) {
 		pos -= Vector2(0, speed) * deltatime;
 
+		sword->flip = SDL_FLIP_NONE;
 		sword->pos = Vector2(0, -50);
 	}
 	if (Input::getInstance()->getKey(SDLK_a)) {

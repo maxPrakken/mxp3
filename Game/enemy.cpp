@@ -8,6 +8,9 @@ Enemy::Enemy() : Entity()
 	animator.animateFromTo = Vector2(0, 3);
 
 	health = 2;
+
+	dead = false;
+	canWalk = true;
 }
 
 Enemy::~Enemy()
@@ -17,7 +20,7 @@ Enemy::~Enemy()
 
 void Enemy::update(double deltatime)
 {
-	
+	die(deltatime);
 }
 
 void Enemy::animationController(int i)
@@ -39,4 +42,18 @@ void Enemy::animationController(int i)
 		//animator.animateFromTo = Vector2(0, 0);
 		break;
 	}
+}
+
+int Enemy::die(double deltatime)
+{
+	if (rot >= -90 && dead) {
+		rot -= 200 * deltatime;
+		canWalk = false;
+		return 1;
+	}
+	else {
+		canWalk = true;
+		return 0;
+	}
+	return 2;
 }
