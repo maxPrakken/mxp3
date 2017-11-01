@@ -13,9 +13,16 @@ Player::Player() : Entity()
 	flip = SDL_FLIP_NONE;	/* example (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);*/
 
 	sword = new Entity();
-	sword->texturePath = "assets/INA.tga";
+	sword->spitesheetPath = "assets/swordAnim.tga";
+	sword->animator.rows = Vector2(4, 1);
+	sword->animator.paused = true;
+	sword->animator.animateFromTo = Vector2(0, 3);
+	sword->animator.switchAfter = 0.1f;
 	addchild(sword);
 	sword->pos = Vector2(50, 0);
+
+	swordAnimCount = 0;
+	swordAnimCan = false;
 
 	hasSlashed = false;
 
@@ -29,7 +36,10 @@ Player::~Player()
 
 void Player::update(double deltatime)
 {
+	Entity::update(deltatime);
+
 	movementController(deltatime);
+	animationController();
 	slash();
 }
 
@@ -63,12 +73,31 @@ void Player::movementController(double deltatime)
 	}
 }
 
+void Player::animationController()
+{
+	if (swordAnimCan) {
+		sword->animator.paused = false;
+		if (sword->animator.cur >= 3) {
+			swordAnimCan = false;
+			sword->animator.paused = true;
+			sword->animator.cur = 0;
+		}
+	}
+}
+
 void Player::slash()
 {
+	
 	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
 		hasSlashed = true;
+
+		swordAnimCan = true;
+
 	}
 	else {
 		hasSlashed = false;
+		//sword->animator.paused = true;
 	}
+
+	
 }

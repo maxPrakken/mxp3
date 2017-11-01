@@ -29,6 +29,16 @@ void Animator::update(double deltatime)
 {
 	timer += deltatime;
 	getCurrentChunk();
+	
+}
+
+bool Animator::getStart() {
+	if (getCurrentChunk() == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 int Animator::getCurrentChunk()

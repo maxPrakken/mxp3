@@ -19,6 +19,8 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	bool getStart();
+
 	//vector 2 rows, determens in how many pieces a spritesheet is sliced
 	Vector2 rows;
 

@@ -15,6 +15,9 @@ public:
 	//movement controller
 	void movementController(double deltatime);
 
+	//animation controller
+	void animationController();
+
 	//slash enemies
 	void slash();
 
@@ -22,6 +25,9 @@ public:
 	bool getHasSlashed() { return hasSlashed; }
 
 	int health;
+
+	int swordAnimCount;
+	bool swordAnimCan;
 
 	Entity* sword;
 
