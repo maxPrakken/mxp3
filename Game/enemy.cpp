@@ -11,6 +11,21 @@ Enemy::Enemy() : Entity()
 
 	dead = false;
 	canWalk = true;
+
+	direction = Vector2(0, 0);
+
+	sword = new Entity();
+	sword->spitesheetPath = "assets/swordAnim.tga";
+	sword->animator.rows = Vector2(4, 1);
+	sword->animator.paused = true;
+	sword->animator.cur = 0;
+	sword->animator.animateFromTo = Vector2(0, 3);
+	sword->animator.switchAfter = 0.1f;
+	addchild(sword);
+	sword->pos = direction;
+	
+	swordAnimCount = 0;
+	swordAnimCan = false;
 }
 
 Enemy::~Enemy()
@@ -20,27 +35,23 @@ Enemy::~Enemy()
 
 void Enemy::update(double deltatime)
 {
+	Entity::update(deltatime);
+
+	sword->pos = direction *= 15;
+
 	die(deltatime);
+	animationController();
 }
 
-void Enemy::animationController(int i)
+void Enemy::animationController()
 {
-	switch (i) {
-	
-	//idle
-	case 1:
-		//animator.animateFromTo = Vector2(0, 0);
-		break;
-	
-	//walking
-	case 2:
-		//animator.animateFromTo = Vector2(0, 0);
-		break;
-
-	//hitting
-	case 3:
-		//animator.animateFromTo = Vector2(0, 0);
-		break;
+	if (swordAnimCan) {
+		sword->animator.paused = false;
+		if (sword->animator.cur >= 3) {
+			swordAnimCan = false;
+			sword->animator.paused = true;
+			sword->animator.cur = 0;
+		}
 	}
 }
 

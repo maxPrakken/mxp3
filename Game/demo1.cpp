@@ -13,6 +13,10 @@ Demo1::Demo1() : Scene()
 	player = new Player();
 	addchild(player);
 	player->rot = 0;
+
+	enemyHitTimer = 0;
+	hitAfter = 1.0f;
+
 }
 
 Demo1::~Demo1()
@@ -31,7 +35,11 @@ void Demo1::update(double deltatime)
 {
 	Scene::update(deltatime);
 
-	hitEnemy(deltatime);
+	enemyHitTimer += deltatime;
+
+	//std::cout << enemyHitTimer << std::endl;
+
+	hitEnemy();
 	AI(deltatime);
 	enemyDie();
 }
@@ -41,7 +49,7 @@ void Demo1::audioController()
 
 }
 
-void Demo1::hitEnemy(double deltatime)
+void Demo1::hitEnemy()
 {
 	if (player->getHasSlashed()) {
 		std::vector<Enemy*>::iterator it = enemyList.begin();
@@ -50,8 +58,6 @@ void Demo1::hitEnemy(double deltatime)
 				(*it)->health--;
 				if ((*it)->health <= 0) {
 					(*it)->dead = true;
-					
-					
 				}
 			}
 			it++;
@@ -73,21 +79,35 @@ void Demo1::enemyDie()
 
 void Demo1::AI(double deltatime)
 {
-	//movement towards the player
-
 	std::vector<Enemy*>::iterator it = enemyList.begin();
 	while (it != enemyList.end()) {
+
+		//movement towards the player
+
 		if ((*it)->canWalk) {
-			Vector2 direction;
-			direction = player->pos - (*it)->pos;
-			direction.normalize();
-			direction *= 100.0f * deltatime;
+			(*it)->direction = player->pos - (*it)->pos;
+			(*it)->direction.normalize();
+			(*it)->direction *= 100.0f * deltatime;
+			//std::cout << (*it)->direction.x << " " << (*it)->direction.y << std::endl;
 			if ((*it)->distanceTo(player) < 400.0f) {
-				(*it)->pos += direction;
+				(*it)->pos += (*it)->direction;
 			}
-			//std::cout << (*it)->distanceTo(player) << std::endl;
 		}
-		it++;
+
+
+		//enemy hit controller
+		if ((*it)->sword->isColliding(player) && enemyHitTimer > hitAfter) {
+			enemyHitTimer = fmod(enemyHitTimer, hitAfter);
+
+			(*it)->swordAnimCan = true;
+			player->health--;
+
+			std::cout << player->health << std::endl;
+
+			if (player->health <= 0) {
+				player->dead = true;
+			}
+		}it++;
 	}
 }
 

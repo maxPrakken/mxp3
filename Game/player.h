@@ -29,6 +29,8 @@ public:
 	int swordAnimCount;
 	bool swordAnimCan;
 
+	bool dead;
+
 	Entity* sword;
 
 private:

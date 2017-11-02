@@ -26,6 +26,7 @@ Player::Player() : Entity()
 
 	hasSlashed = false;
 
+	dead = false;
 	health = 10;
 }
 
@@ -96,7 +97,6 @@ void Player::slash()
 	}
 	else {
 		hasSlashed = false;
-		//sword->animator.paused = true;
 	}
 
 	

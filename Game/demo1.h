@@ -19,13 +19,16 @@ public:
 
 	void audioController();
 
-	void hitEnemy(double deltatime);
+	void hitEnemy();
 
 	void enemyDie();
 
 	void AI(double deltatime);
 
 	void spawnEnemy(Vector2 position);
+
+	double enemyHitTimer;
+	float hitAfter;
 
 	std::vector<Enemy*>enemyList;
 

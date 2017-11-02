@@ -12,7 +12,7 @@ public:
 	virtual void update(double deltatime);
 	
 	//animation controller
-	void animationController(int i);
+	void animationController();
 
 	int die(double deltatime);
 
@@ -21,6 +21,16 @@ public:
 	bool dead;
 	bool canWalk;
 
-private:
+	int swordAnimCount;
+	bool swordAnimCan;
 
+	bool getHasSlashed() { return hasSlashed; }
+	
+
+	Vector2 direction;
+
+	Entity* sword;
+
+private:
+	bool hasSlashed;
 };
