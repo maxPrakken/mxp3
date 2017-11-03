@@ -4,6 +4,7 @@
 #include "vector2.h"
 #include "animator.h"
 #include <vector>
+#include "audio.h"
 
 class Renderer;
 

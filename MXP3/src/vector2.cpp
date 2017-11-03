@@ -72,6 +72,18 @@ void Vector2::operator/=(const Vector2 & oth)
 	this->y /= oth.y;
 }
 
+void Vector2::operator/=(const float & oth)
+{
+	this->x /= oth;
+	this->y /= oth;
+}
+
+void Vector2::operator/(const float & oth)
+{
+	this->x / oth;
+	this->y / oth;
+}
+
 void Vector2::normalize() {
 	int i = mag();
 	if (i != 0) {

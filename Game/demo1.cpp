@@ -15,8 +15,8 @@ Demo1::Demo1() : Scene()
 	player->rot = 0;
 
 	enemyHitTimer = 0;
-	hitAfter = 1.0f;
-
+	hitAfter = 2.0f;
+	
 }
 
 Demo1::~Demo1()
@@ -101,6 +101,8 @@ void Demo1::AI(double deltatime)
 
 			(*it)->swordAnimCan = true;
 			player->health--;
+
+			Audio::getInstance()->playAudio("sword.wav");
 
 			std::cout << player->health << std::endl;
 

@@ -4,6 +4,8 @@ Enemy::Enemy() : Entity()
 {
 	spitesheetPath = "assets/testSheet.tga";
 
+	size = Vector2(50, 50);
+
 	animator.rows = Vector2(4, 1);
 	animator.animateFromTo = Vector2(0, 3);
 
@@ -16,6 +18,7 @@ Enemy::Enemy() : Entity()
 
 	sword = new Entity();
 	sword->spitesheetPath = "assets/swordAnim.tga";
+	sword->size = Vector2(50, 50);
 	sword->animator.rows = Vector2(4, 1);
 	sword->animator.paused = true;
 	sword->animator.cur = 0;
@@ -30,14 +33,14 @@ Enemy::Enemy() : Entity()
 
 Enemy::~Enemy()
 {
-	
+	delete sword;
 }
 
 void Enemy::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	sword->pos = direction *= 15;
+	sword->pos = direction *= 7;
 
 	die(deltatime);
 	animationController();
