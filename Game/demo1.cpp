@@ -44,17 +44,16 @@ void Demo1::update(double deltatime)
 	Scene::update(deltatime);
 
 	if(enemyHitTimerCheck){ enemyHitTimer += deltatime; }
-	
-	//std::cout << enemyHitTimer << std::endl;
 
 	hitEnemy();
 	AI(deltatime);
 	enemyDie();
+	audioController();
 }
 
 void Demo1::audioController()
 {
-
+	
 }
 
 void Demo1::hitEnemy()

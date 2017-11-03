@@ -11,7 +11,11 @@ Background::Background() : Entity()
 
 Background::~Background()
 {
-
+	for (unsigned int i = 0; i < tileVector.size(); i++) {
+		removechild(tileVector[i]);
+		delete tileVector[i];
+	}
+	tileVector.clear();
 }
 
 void Background::update(double deltatime)
@@ -35,17 +39,15 @@ void Background::spawnTile()
 	addchild(tile);
 	tileVector.push_back(tile);
 	tile->pos = spawnPos;
+
 	if (spawnPos.x <= grid.x * tile->size.x) {
 		spawnPos += Vector2(tile->size.x, 0);
-		std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
+		//std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
 
 	}
 	else if(spawnPos.x > grid.x * tile->size.x) {
-		//HIER 
 		spawnPos.x = startX;
 		spawnPos.y += tile->size.y;
-		std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
+		//std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
 	}
-	
-	
 }
