@@ -7,6 +7,13 @@ Demo1::Demo1() : Scene()
 	//default value 
 	texturePath = "";
 
+	//background needs to be divined up top
+	background = new Background();
+	//background->texturePath = "assets/INA.tga";
+	std::cout << background->size.x << " " << background->size.y << std::endl;
+	addchild(background);
+	background->pos = Vector2(0, 0);
+
 	//spawnEnemy(Vector2(300, 300));
 	spawnEnemy(Vector2(500, 500));
 
@@ -15,6 +22,7 @@ Demo1::Demo1() : Scene()
 	player->rot = 0;
 
 	enemyHitTimer = 0;
+	enemyHitTimerCheck = false;
 	hitAfter = 2.0f;
 	
 }
@@ -35,8 +43,8 @@ void Demo1::update(double deltatime)
 {
 	Scene::update(deltatime);
 
-	enemyHitTimer += deltatime;
-
+	if(enemyHitTimerCheck){ enemyHitTimer += deltatime; }
+	
 	//std::cout << enemyHitTimer << std::endl;
 
 	hitEnemy();
@@ -96,20 +104,27 @@ void Demo1::AI(double deltatime)
 
 
 		//enemy hit controller
-		if ((*it)->sword->isColliding(player) && enemyHitTimer > hitAfter) {
-			enemyHitTimer = fmod(enemyHitTimer, hitAfter);
+		if ((*it)->sword->isColliding(player)) {
 
-			(*it)->swordAnimCan = true;
-			player->health--;
+			enemyHitTimerCheck = true;
 
-			Audio::getInstance()->playAudio("sword.wav");
+			if (enemyHitTimer > hitAfter) {
+				enemyHitTimer = fmod(enemyHitTimer, hitAfter);
 
-			std::cout << player->health << std::endl;
+				(*it)->swordAnimCan = true;
+				player->health--;
 
-			if (player->health <= 0) {
-				player->dead = true;
+				Audio::getInstance()->playAudio("sword.wav");
+
+				std::cout << player->health << std::endl;
+
+				if (player->health <= 0) {
+					player->dead = true;
+				}
 			}
-		}it++;
+		}
+		else { enemyHitTimerCheck = false; }
+		it++;
 	}
 }
 

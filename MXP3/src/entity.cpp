@@ -15,7 +15,7 @@ Entity::Entity()
 	animator = Animator();
 
 	pos = Vector2(0, 0);
-	size = Vector2(100, 100);
+	size = Vector2(0, 0);
 	rot = 0;
 }
 

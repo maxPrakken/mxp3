@@ -7,8 +7,8 @@ Renderer::Renderer()
 	LAST = 0;
 	deltatime = 0;
 
-	resX = 1280;
-	resY = 720;
+	resX = 1200;
+	resY = 800;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;

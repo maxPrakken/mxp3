@@ -4,6 +4,7 @@
 
 #include "enemy.h"
 #include "player.h"
+#include "background.h"
 
 class Demo1 : public Scene{
 
@@ -17,6 +18,8 @@ public:
 
 	Player* player;
 
+	Background* background;
+
 	void audioController();
 
 	void hitEnemy();
@@ -28,6 +31,7 @@ public:
 	void spawnEnemy(Vector2 position);
 
 	double enemyHitTimer;
+	bool enemyHitTimerCheck;
 	float hitAfter;
 
 	std::vector<Enemy*>enemyList;
