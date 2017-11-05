@@ -2,6 +2,8 @@
 
 Demo1::Demo1() : Scene()
 {
+	//test comment (remove)
+
 	std::cout << "===NEW SCENE===" << std::endl;
 
 	//default value 
