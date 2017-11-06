@@ -2,8 +2,6 @@
 
 Demo1::Demo1() : Scene()
 {
-	//test comment (remove)
-
 	std::cout << "===NEW SCENE===" << std::endl;
 
 	//default value 
@@ -22,6 +20,16 @@ Demo1::Demo1() : Scene()
 	player = new Player();
 	addchild(player);
 	player->rot = 0;
+
+	//spawns hearts that resemble your health
+	hearts = new Entity();
+	hearts->pos = Vector2(100, 100);
+	hearts->size = Vector2(100, 400);
+	hearts->spitesheetPath = "assets/hearts.tga";
+	hearts->animator.rows = Vector2(4, 1);
+	hearts->animator.paused = true;
+	hearts->animator.cur = 0;
+	addchild(hearts);
 
 	enemyHitTimer = 0;
 	enemyHitTimerCheck = false;
@@ -45,12 +53,22 @@ void Demo1::update(double deltatime)
 {
 	Scene::update(deltatime);
 
-	if(enemyHitTimerCheck){ enemyHitTimer += deltatime; }
+	if (!player->dead) {
 
-	hitEnemy();
-	AI(deltatime);
-	enemyDie();
-	audioController();
+		if (enemyHitTimerCheck) { enemyHitTimer += deltatime; }
+		AI(deltatime);
+		hitEnemy();
+		enemyDie();
+		audioController();
+		heartController();
+	}
+	else {
+		
+	}
+}
+
+void Demo1::build()
+{
 }
 
 void Demo1::audioController()
@@ -136,5 +154,24 @@ void Demo1::spawnEnemy(Vector2 position)
 	enemyList.push_back(enemy);
 	addchild(enemy);
 	enemy->pos = position;
+}
+
+void Demo1::heartController()
+{
+	if (player->health == 5) {
+		hearts->animator.cur = 0;
+	}
+	else if (player->health == 4) {
+		hearts->animator.cur = 1;
+	}
+	else if (player->health == 3) {
+		hearts->animator.cur = 2;
+	}
+	else if (player->health == 2 || player->health == 1) {
+		hearts->animator.cur = 3;
+	}
+	else if(player->health <= 0) {
+		hearts->animator.cur = 4;
+	}
 }
 

@@ -21,6 +21,9 @@ public:
 	//slash enemies
 	void slash();
 
+	//player dies
+	int die(double deltatime);
+
 	//return hasSlashed bool
 	bool getHasSlashed() { return hasSlashed; }
 

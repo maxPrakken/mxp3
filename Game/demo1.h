@@ -18,6 +18,8 @@ public:
 
 	Player* player;
 
+	Entity* hearts;
+
 	Background* background;
 
 	void audioController();
@@ -29,6 +31,8 @@ public:
 	void AI(double deltatime);
 
 	void spawnEnemy(Vector2 position);
+
+	void heartController();
 
 	double enemyHitTimer;
 	bool enemyHitTimerCheck;

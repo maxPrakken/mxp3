@@ -29,7 +29,7 @@ Player::Player() : Entity()
 	hasSlashed = false;
 
 	dead = false;
-	health = 10;
+	health = 5;
 }
 
 Player::~Player()
@@ -41,9 +41,12 @@ void Player::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	movementController(deltatime);
-	animationController();
-	slash();
+	if (!dead) {
+		movementController(deltatime);
+		animationController();
+		slash();
+	}
+	else { die(deltatime); }
 }
 
 void Player::movementController(double deltatime)
@@ -99,7 +102,16 @@ void Player::slash()
 	}
 	else {
 		hasSlashed = false;
-	}
+	}	
+}
 
-	
+int Player::die(double deltatime) {
+	if (rot >= -90 && dead) {
+		rot -= 200 * deltatime;
+		return 1;
+	}
+	else {
+		return 0;
+	}
+	return 2;
 }
