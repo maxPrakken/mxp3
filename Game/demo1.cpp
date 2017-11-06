@@ -9,8 +9,6 @@ Demo1::Demo1() : Scene()
 
 	//background needs to be divined up top
 	background = new Background();
-	//background->texturePath = "assets/INA.tga";
-	std::cout << background->size.x << " " << background->size.y << std::endl;
 	addchild(background);
 	background->pos = Vector2(0, 0);
 
@@ -34,7 +32,8 @@ Demo1::Demo1() : Scene()
 	finishDoor = new Entity();
 	finishDoor->texturePath = "assets/INA.tga";
 	finishDoor->size = Vector2(50, 100);
-	finishDoor->pos = Vector2(200, 200);
+	finishDoor->pos = Vector2(-200, -200);
+	addchild(finishDoor);
 
 	spawnWalls();
 
@@ -64,7 +63,7 @@ void Demo1::update(double deltatime)
 
 	if (!player->dead) {
 
-		std::cout << enemiesAlive << std::endl;
+		//std::cout << enemiesAlive << std::endl;
 
 		if (enemyHitTimerCheck) { enemyHitTimer += deltatime; }
 		AI(deltatime);
@@ -95,6 +94,7 @@ void Demo1::hitEnemy()
 				if ((*it)->health <= 0) {
 					(*it)->dead = true;
 					enemiesAlive--;
+					std::cout << "dfda" << std::endl;
 				}
 			}
 			it++;
@@ -145,8 +145,6 @@ void Demo1::AI(double deltatime)
 
 				Audio::getInstance()->playAudio("sword.wav");
 
-				std::cout << player->health << std::endl;
-
 				if (player->health <= 0) {
 					player->dead = true;
 				}
@@ -188,7 +186,7 @@ void Demo1::heartController()
 void Demo1::goToNextLevel()
 {
 	if (enemiesAlive <= 0) {
-		addchild(finishDoor);
+		finishDoor->pos = Vector2(800, 200);
 		if (player->isColliding(finishDoor)) {
 			std::cout << "you won, go to next demo" << std::endl;
 		}

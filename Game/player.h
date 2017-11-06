@@ -40,6 +40,7 @@ public:
 	bool canLeft;
 
 	Entity* sword;
+	double swordTimer;
 
 private:
 	bool hasSlashed;

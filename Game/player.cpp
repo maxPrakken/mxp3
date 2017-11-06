@@ -26,6 +26,8 @@ Player::Player() : Entity()
 	swordAnimCount = 0;
 	swordAnimCan = false;
 
+	swordTimer = 0;
+
 	hasSlashed = false;
 
 	dead = false;
@@ -47,6 +49,8 @@ void Player::update(double deltatime)
 	Entity::update(deltatime);
 
 	if (!dead) {
+		swordTimer += deltatime;
+
 		movementController(deltatime);
 		animationController();
 		slash();
@@ -110,11 +114,11 @@ void Player::animationController()
 void Player::slash()
 {
 	
-	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
+	if (Input::getInstance()->getKeyDown(SDLK_SPACE) && swordTimer >= 1.0) {
 		hasSlashed = true;
 		Audio::getInstance()->playAudio("sword.wav");
 		swordAnimCan = true;
-
+		swordTimer = 0;
 	}
 	else {
 		hasSlashed = false;
