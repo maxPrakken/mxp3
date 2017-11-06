@@ -14,7 +14,7 @@ Demo1::Demo1() : Scene()
 	addchild(background);
 	background->pos = Vector2(0, 0);
 
-	//spawnEnemy(Vector2(300, 300));
+	spawnEnemy(Vector2(600, 600));
 	spawnEnemy(Vector2(500, 500));
 
 	player = new Player();
@@ -31,9 +31,18 @@ Demo1::Demo1() : Scene()
 	hearts->animator.cur = 0;
 	addchild(hearts);
 
+	finishDoor = new Entity();
+	finishDoor->texturePath = "assets/INA.tga";
+	finishDoor->size = Vector2(50, 100);
+	finishDoor->pos = Vector2(200, 200);
+
+	spawnWalls();
+
 	enemyHitTimer = 0;
 	enemyHitTimerCheck = false;
 	hitAfter = 2.0f;
+
+	enemiesAlive = enemyList.size();
 	
 }
 
@@ -55,20 +64,20 @@ void Demo1::update(double deltatime)
 
 	if (!player->dead) {
 
+		std::cout << enemiesAlive << std::endl;
+
 		if (enemyHitTimerCheck) { enemyHitTimer += deltatime; }
 		AI(deltatime);
 		hitEnemy();
 		enemyDie();
 		audioController();
 		heartController();
+		goToNextLevel();
+		wallCollisionCheck();
 	}
 	else {
 		
 	}
-}
-
-void Demo1::build()
-{
 }
 
 void Demo1::audioController()
@@ -85,6 +94,7 @@ void Demo1::hitEnemy()
 				(*it)->health--;
 				if ((*it)->health <= 0) {
 					(*it)->dead = true;
+					enemiesAlive--;
 				}
 			}
 			it++;
@@ -175,3 +185,59 @@ void Demo1::heartController()
 	}
 }
 
+void Demo1::goToNextLevel()
+{
+	if (enemiesAlive <= 0) {
+		addchild(finishDoor);
+		if (player->isColliding(finishDoor)) {
+			std::cout << "you won, go to next demo" << std::endl;
+		}
+	}
+}
+
+void Demo1::spawnWalls()
+{
+		wallLeft = new Entity();
+		wallRight = new Entity();
+		wallTop = new Entity();
+		wallDown = new Entity();
+
+		wallLeft->size = Vector2(2, 800);
+		wallRight->size = Vector2(2, 800);
+		wallTop->size = Vector2(800, 2);
+		wallDown->size = Vector2(800, 2);
+
+		wallLeft->pos = Vector2(180, 400);
+		wallRight->pos = Vector2(975, 400);
+		wallTop->pos = Vector2(600, -20);
+		wallDown->pos = Vector2(600, 775);
+
+		addchild(wallLeft);
+		addchild(wallRight);
+		addchild(wallTop);
+		addchild(wallDown);
+
+		wallVector.push_back(wallLeft);
+		wallVector.push_back(wallRight);
+		wallVector.push_back(wallTop);
+		wallVector.push_back(wallDown);
+}
+
+void Demo1::wallCollisionCheck()
+{
+	if (player->isColliding(wallLeft)) {
+		player->canLeft = false;
+	}else { player->canLeft = true; }
+
+	if (player->isColliding(wallRight)) {
+		player->canRight = false;
+	}else { player->canRight = true; }
+
+	if (player->isColliding(wallTop)) {
+		player->canUp = false;
+	}else { player->canUp = true; }
+
+	if (player->isColliding(wallDown)) {
+		player->canDown = false;
+	}else { player->canDown = true; }
+}

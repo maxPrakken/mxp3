@@ -34,6 +34,11 @@ public:
 
 	bool dead;
 
+	bool canUp;
+	bool canDown;
+	bool canRight;
+	bool canLeft;
+
 	Entity* sword;
 
 private:

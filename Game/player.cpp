@@ -30,6 +30,11 @@ Player::Player() : Entity()
 
 	dead = false;
 	health = 5;
+
+	canUp = true;
+	canDown = true;
+	canRight = true;
+	canLeft = true;
 }
 
 Player::~Player()
@@ -51,31 +56,42 @@ void Player::update(double deltatime)
 
 void Player::movementController(double deltatime)
 {
-	if (Input::getInstance()->getKey(SDLK_w)) {
-		pos -= Vector2(0, speed) * deltatime;
+	if (canUp) {
+		if (Input::getInstance()->getKey(SDLK_w)) {
+			pos -= Vector2(0, speed) * deltatime;
 
-		sword->flip = SDL_FLIP_NONE;
-		sword->pos = Vector2(0, -25);
+			sword->flip = SDL_FLIP_NONE;
+			sword->pos = Vector2(0, -25);
+		}
 	}
-	if (Input::getInstance()->getKey(SDLK_a)) {
-		pos -= Vector2(speed, 0) * deltatime;
-		flip = SDL_FLIP_HORIZONTAL;
 
-		sword->flip = SDL_FLIP_HORIZONTAL;
-		sword->pos = Vector2(-25, 0);
+	if (canLeft) {
+		if (Input::getInstance()->getKey(SDLK_a)) {
+			pos -= Vector2(speed, 0) * deltatime;
+			flip = SDL_FLIP_HORIZONTAL;
+
+			sword->flip = SDL_FLIP_HORIZONTAL;
+			sword->pos = Vector2(-25, 0);
+		}
 	}
-	if (Input::getInstance()->getKey(SDLK_s)) {
-		pos += Vector2(0, speed) * deltatime;
 
-		sword->flip = SDL_FLIP_NONE;
-		sword->pos = Vector2(0, 25);
+	if (canDown) {
+		if (Input::getInstance()->getKey(SDLK_s)) {
+			pos += Vector2(0, speed) * deltatime;
+
+			sword->flip = SDL_FLIP_NONE;
+			sword->pos = Vector2(0, 25);
+		}
 	}
-	if (Input::getInstance()->getKey(SDLK_d)) {
-		pos += Vector2(speed, 0) * deltatime;
-		flip = SDL_FLIP_NONE;
 
-		sword->flip = SDL_FLIP_NONE;
-		sword->pos = Vector2(25, 0);
+	if (canRight) {
+		if (Input::getInstance()->getKey(SDLK_d)) {
+			pos += Vector2(speed, 0) * deltatime;
+			flip = SDL_FLIP_NONE;
+
+			sword->flip = SDL_FLIP_NONE;
+			sword->pos = Vector2(25, 0);
+		}
 	}
 }
 

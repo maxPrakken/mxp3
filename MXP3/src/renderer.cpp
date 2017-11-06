@@ -103,7 +103,7 @@ void Renderer::showTexture(SDL_Texture* tex) {
 
 void Renderer::update()
 {
-	SDL_SetRenderDrawColor(renderer, 100, 100, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderPresent(renderer);
 	SDL_RenderClear(renderer);
 

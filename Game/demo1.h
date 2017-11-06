@@ -20,6 +20,8 @@ public:
 
 	Entity* hearts;
 
+	Entity* finishDoor;
+
 	Background* background;
 
 	void audioController();
@@ -34,11 +36,25 @@ public:
 
 	void heartController();
 
+	void goToNextLevel();
+
+	void spawnWalls();
+
+	void wallCollisionCheck();
+
+	int enemiesAlive;
+
 	double enemyHitTimer;
 	bool enemyHitTimerCheck;
 	float hitAfter;
 
+	Entity* wallLeft;
+	Entity* wallRight;
+	Entity* wallTop;
+	Entity* wallDown;
+
 	std::vector<Enemy*>enemyList;
+	std::vector<Entity*>wallVector;
 
 private:
 	

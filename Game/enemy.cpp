@@ -9,7 +9,7 @@ Enemy::Enemy() : Entity()
 	animator.rows = Vector2(4, 1);
 	animator.animateFromTo = Vector2(0, 3);
 
-	health = 10;
+	health = 3;
 
 	dead = false;
 	canWalk = true;

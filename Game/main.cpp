@@ -11,8 +11,11 @@ Input* Input::instance = NULL;
 #undef main
 int main(int argc, char *argv[])
 {
+
 	Audio::getInstance();
-	Demo1* demo1 = new Demo1();
+
+		Demo1* demo1 = new Demo1();
+	
 	while (!Input::getInstance()->getMustQuit())
 	{
 		Input::getInstance()->update();
