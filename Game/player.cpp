@@ -2,26 +2,26 @@
 
 Player::Player() : Entity()
 {
-	spitesheetPath = "assets/testSheet.tga";
+	spitesheetPath = "assets/playerAnim.tga";
 
-	animator.rows = Vector2(4, 1);
-	animator.animateFromTo = Vector2(2, 3);
+	animator.rows = Vector2(15, 1);
+	animator.animateFromTo = Vector2(5, 6);
 	pos = Vector2(200, 100);
-	size = Vector2(50, 50);
+	size = Vector2(50, 100);
 
 	speed = 150;
 
 	flip = SDL_FLIP_NONE;	/* example (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);*/
 
 	sword = new Entity();
-	sword->size = Vector2(50, 50);
+	sword->size = Vector2(100, 100);
 	sword->spitesheetPath = "assets/swordAnim.tga";
-	sword->animator.rows = Vector2(4, 1);
+	sword->animator.rows = Vector2(6, 1);
 	sword->animator.paused = true;
-	sword->animator.animateFromTo = Vector2(0, 3);
+	sword->animator.animateFromTo = Vector2(0, 5);
 	sword->animator.switchAfter = 0.1f;
 	addchild(sword);
-	sword->pos = Vector2(25, 0);
+	sword->pos = Vector2(25, -50);
 
 	swordAnimCount = 0;
 	swordAnimCan = false;
@@ -60,12 +60,16 @@ void Player::update(double deltatime)
 
 void Player::movementController(double deltatime)
 {
+	std::cout << animator.cur << std::endl;
+
 	if (canUp) {
 		if (Input::getInstance()->getKey(SDLK_w)) {
 			pos -= Vector2(0, speed) * deltatime;
+			animator.cur = 0;
+			animator.animateFromTo = Vector2(0, 4);
 
 			sword->flip = SDL_FLIP_NONE;
-			sword->pos = Vector2(0, -25);
+			sword->pos = Vector2(0, -75);
 		}
 	}
 
@@ -73,17 +77,20 @@ void Player::movementController(double deltatime)
 		if (Input::getInstance()->getKey(SDLK_a)) {
 			pos -= Vector2(speed, 0) * deltatime;
 			flip = SDL_FLIP_HORIZONTAL;
+			animator.animateFromTo = Vector2(10, 14);
 
 			sword->flip = SDL_FLIP_HORIZONTAL;
-			sword->pos = Vector2(-25, 0);
+			sword->pos = Vector2(-75, -25);
 		}
 	}
 
 	if (canDown) {
 		if (Input::getInstance()->getKey(SDLK_s)) {
 			pos += Vector2(0, speed) * deltatime;
+			animator.cur = 5;
+			animator.animateFromTo = Vector2(5, 9);
 
-			sword->flip = SDL_FLIP_NONE;
+			sword->flip = SDL_FLIP_VERTICAL;
 			sword->pos = Vector2(0, 25);
 		}
 	}
@@ -92,9 +99,10 @@ void Player::movementController(double deltatime)
 		if (Input::getInstance()->getKey(SDLK_d)) {
 			pos += Vector2(speed, 0) * deltatime;
 			flip = SDL_FLIP_NONE;
+			animator.animateFromTo = Vector2(10, 14);
 
 			sword->flip = SDL_FLIP_NONE;
-			sword->pos = Vector2(25, 0);
+			sword->pos = Vector2(25, -25);
 		}
 	}
 }
@@ -103,7 +111,7 @@ void Player::animationController()
 {
 	if (swordAnimCan) {
 		sword->animator.paused = false;
-		if (sword->animator.cur >= 3) {
+		if (sword->animator.cur >= 5) {
 			swordAnimCan = false;
 			sword->animator.paused = true;
 			sword->animator.cur = 0;

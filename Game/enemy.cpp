@@ -18,11 +18,11 @@ Enemy::Enemy() : Entity()
 
 	sword = new Entity();
 	sword->spitesheetPath = "assets/swordAnim.tga";
-	sword->size = Vector2(50, 50);
-	sword->animator.rows = Vector2(4, 1);
+	sword->size = Vector2(100, 100);
+	sword->animator.rows = Vector2(6, 1);
 	sword->animator.paused = true;
 	sword->animator.cur = 0;
-	sword->animator.animateFromTo = Vector2(0, 3);
+	sword->animator.animateFromTo = Vector2(0, 5);
 	sword->animator.switchAfter = 0.1f;
 	addchild(sword);
 	sword->pos = direction;
@@ -50,7 +50,7 @@ void Enemy::animationController()
 {
 	if (swordAnimCan) {
 		sword->animator.paused = false;
-		if (sword->animator.cur >= 3) {
+		if (sword->animator.cur >= 5) {
 			swordAnimCan = false;
 			sword->animator.paused = true;
 			sword->animator.cur = 0;
