@@ -31,8 +31,6 @@ public:
 	//resumes audio. channel is the channel you resume
 	void resumeAudio(int channel);
 
-	std::map<std::string, Mix_Chunk*> sounds;
-
 	Mix_Chunk * getChunk(std::string filename);
 
 private:
@@ -40,4 +38,6 @@ private:
 
 	Audio();
 	virtual ~Audio();
+
+	std::map<std::string, Mix_Chunk*> sounds;
 };

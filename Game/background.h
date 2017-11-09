@@ -8,15 +8,14 @@ public:
 	virtual ~Background();
 	virtual void update(double deltatime);
 
+	Vector2 grid;
+	Vector2 spawnPos;
+
+private:
 	void buildBackground();
 	void spawnTile();
 
-	Vector2 grid;
-	Vector2 spawnPos;
 	int startX;
 
 	std::vector<Entity*>tileVector;
-
-private:
-
 };

@@ -12,6 +12,23 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+
+	//return hasSlashed bool
+	bool getHasSlashed() { return hasSlashed; }
+
+	int health;
+
+	bool dead;
+
+	bool canUp;
+	bool canDown;
+	bool canRight;
+	bool canLeft;
+
+	Entity* sword;
+
+private:
+
 	//movement controller
 	void movementController(double deltatime);
 
@@ -24,26 +41,12 @@ public:
 	//player dies
 	int die(double deltatime);
 
-	//return hasSlashed bool
-	bool getHasSlashed() { return hasSlashed; }
-
-	int health;
-
 	int swordAnimCount;
 	bool swordAnimCan;
 
-	bool dead;
-
-	bool canUp;
-	bool canDown;
-	bool canRight;
-	bool canLeft;
-
-	Entity* sword;
-	double swordTimer;
-
-private:
 	bool hasSlashed;
 
 	float speed;
+
+	double swordTimer;
 };

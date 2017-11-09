@@ -16,6 +16,8 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+private:
+
 	Player* player;
 
 	Entity* hearts;
@@ -55,7 +57,4 @@ public:
 
 	std::vector<Enemy*>enemyList;
 	std::vector<Entity*>wallVector;
-
-private:
-	
 };

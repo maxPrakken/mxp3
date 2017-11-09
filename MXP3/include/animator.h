@@ -34,8 +34,6 @@ public:
 	//bool to check if the animation is paused
 	bool paused;
 
-	//timer to time when to switch chunk
-	double timer;
 	//deadline for timer, at this float time the timer will reset. 
 	//this determenates how fast/slow the animation will play
 	double switchAfter;
@@ -49,6 +47,9 @@ public:
 	SDL_Rect getChuck(Vector2 position, Vector2 resolution);
 
 private:
+	//timer to time when to switch chunk
+	double timer;
+
 	//private int i to stay globaly scoped
 	int i;
 	

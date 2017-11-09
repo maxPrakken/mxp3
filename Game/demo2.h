@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../MXP3/include/scene.h"
+#include "background.h"
 
 class Demo2 : public Scene {
 public:
@@ -9,6 +10,7 @@ public:
 
 	virtual void update(double deltatime);
 
-private:
 
+private:
+	Background* background;
 };
