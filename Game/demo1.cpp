@@ -3,7 +3,6 @@
 Demo1::Demo1() : Scene()
 {
 	std::cout << "===NEW SCENE===" << std::endl;
-
 	//default value 
 	texturePath = "";
 
@@ -63,7 +62,9 @@ void Demo1::update(double deltatime)
 
 	if (!player->dead) {
 
-		//std::cout << enemiesAlive << std::endl;
+		if (player->getChildren() == NULL) {
+			player->addchild(player->sword);
+		}
 
 		if (enemyHitTimerCheck) { enemyHitTimer += deltatime; }
 		AI(deltatime);
@@ -73,6 +74,7 @@ void Demo1::update(double deltatime)
 		heartController();
 		goToNextLevel();
 		wallCollisionCheck();
+		if(!player->dead) { player->demo1MovementController(deltatime); }
 	}
 	else {
 		
@@ -94,7 +96,6 @@ void Demo1::hitEnemy()
 				if ((*it)->health <= 0) {
 					(*it)->dead = true;
 					enemiesAlive--;
-					std::cout << "dfda" << std::endl;
 				}
 			}
 			it++;
@@ -188,7 +189,7 @@ void Demo1::goToNextLevel()
 	if (enemiesAlive <= 0) {
 		finishDoor->pos = Vector2(800, 200);
 		if (player->isColliding(finishDoor)) {
-			std::cout << "you won, go to next demo" << std::endl;
+			std::cout << "you won, go to next demo by pressing ]" << std::endl;
 		}
 	}
 }

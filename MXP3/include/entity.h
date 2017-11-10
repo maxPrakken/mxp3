@@ -36,6 +36,9 @@ public:
 	//removechild function, removes it from the window and parent
 	void removechild(Entity* child);
 
+	//gets children 
+	Entity* getChildren();
+
 	//calculates distance between entity's
 	float distanceTo(Entity* other);
 

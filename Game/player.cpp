@@ -50,17 +50,14 @@ void Player::update(double deltatime)
 
 	if (!dead) {
 		swordTimer += deltatime;
-
-		movementController(deltatime);
-		animationController();
-		slash();
 	}
 	else { die(deltatime); }
 }
 
-void Player::movementController(double deltatime)
+void Player::demo1MovementController(double deltatime)
 {
-	std::cout << animator.cur << std::endl;
+	animationController();
+	slash();
 
 	if (canUp) {
 		if (Input::getInstance()->getKey(SDLK_w)) {
@@ -105,6 +102,21 @@ void Player::movementController(double deltatime)
 			sword->pos = Vector2(25, -25);
 		}
 	}
+}
+
+void Player::demo2MovementController(double deltatime)
+{
+		if (Input::getInstance()->getKey(SDLK_a)) {
+			pos -= Vector2(speed, 0) * deltatime;
+			flip = SDL_FLIP_HORIZONTAL;
+			animator.animateFromTo = Vector2(10, 14);
+		}
+
+		if (Input::getInstance()->getKey(SDLK_d)) {
+			pos += Vector2(speed, 0) * deltatime;
+			flip = SDL_FLIP_NONE;
+			animator.animateFromTo = Vector2(10, 14);
+		}
 }
 
 void Player::animationController()

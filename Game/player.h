@@ -12,6 +12,10 @@ public:
 	//update function
 	virtual void update(double deltatime);
 
+	//movement controller demo1
+	void demo1MovementController(double deltatime);
+	//movement controller demo2
+	void demo2MovementController(double deltatime);
 
 	//return hasSlashed bool
 	bool getHasSlashed() { return hasSlashed; }
@@ -29,9 +33,7 @@ public:
 
 private:
 
-	//movement controller
-	void movementController(double deltatime);
-
+	
 	//animation controller
 	void animationController();
 

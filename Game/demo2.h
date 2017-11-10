@@ -2,6 +2,7 @@
 
 #include "../MXP3/include/scene.h"
 #include "background.h"
+#include "player.h"
 
 class Demo2 : public Scene {
 public:
@@ -12,5 +13,14 @@ public:
 
 
 private:
+	void wallCollisionCheck();
+
+	Player* player;
+
 	Background* background;
+
+	Entity* wallLeft;
+	Entity* wallRight;
+	Entity* wallTop;
+	Entity* wallDown;
 };

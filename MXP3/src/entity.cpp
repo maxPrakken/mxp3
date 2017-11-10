@@ -61,6 +61,15 @@ void Entity::removechild(Entity * child)
 	}
 }
 
+Entity* Entity::getChildren()
+{
+	std::vector<Entity*>::iterator it = childrenVec.begin();
+	while (it != childrenVec.end()) {
+		return (*it);
+	}
+	return NULL;
+}
+
 float Entity::distanceTo(Entity * other)
 {
 	return (pos - other->pos).mag();
