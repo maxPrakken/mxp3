@@ -28,29 +28,6 @@ void Demo2::update(double deltatime)
 	player->demo2MovementController(deltatime);
 }
 
-void Demo2::wallCollisionCheck()
-{
-	if (player->isColliding(wallLeft)) {
-		player->canLeft = false;
-	}
-	else { player->canLeft = true; }
-
-	if (player->isColliding(wallRight)) {
-		player->canRight = false;
-	}
-	else { player->canRight = true; }
-
-	if (player->isColliding(wallTop)) {
-		player->canUp = false;
-	}
-	else { player->canUp = true; }
-
-	if (player->isColliding(wallDown)) {
-		player->canDown = false;
-	}
-	else { player->canDown = true; }
-}
-
 void Demo2::buildPlatform(int posx, int posy, int gridx, int gridy)
 {
 	Background* platform = new Background(Vector2(gridx, gridy), "assets/stoneGrey.tga");

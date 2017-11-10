@@ -8,6 +8,11 @@ Player::Player() : Entity()
 	animator.animateFromTo = Vector2(5, 6);
 	pos = Vector2(200, 100);
 	size = Vector2(50, 100);
+	velocity = Vector2(0, 0);
+
+	gravity = Vector2(0, 10);
+
+	velocity += gravity;
 
 	speed = 150;
 
@@ -48,6 +53,8 @@ void Player::update(double deltatime)
 {
 	Entity::update(deltatime);
 
+	pos += velocity * deltatime;
+
 	if (!dead) {
 		swordTimer += deltatime;
 	}
@@ -58,6 +65,8 @@ void Player::demo1MovementController(double deltatime)
 {
 	animationController();
 	slash();
+
+	pos += velocity;
 
 	if (canUp) {
 		if (Input::getInstance()->getKey(SDLK_w)) {

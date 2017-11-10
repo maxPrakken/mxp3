@@ -32,8 +32,6 @@ public:
 	Entity* sword;
 
 private:
-
-	
 	//animation controller
 	void animationController();
 
@@ -49,6 +47,8 @@ private:
 	bool hasSlashed;
 
 	float speed;
+	Vector2 velocity;
+	Vector2 gravity;
 
 	double swordTimer;
 };
