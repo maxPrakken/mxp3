@@ -8,6 +8,8 @@ Demo2::Demo2()
 	player = new Player();
 	player->pos = Vector2(200, 100);
 	addchild(player);
+
+	buildPlatform(200, 200, 2, 1);
 }
 
 Demo2::~Demo2()
@@ -47,4 +49,12 @@ void Demo2::wallCollisionCheck()
 		player->canDown = false;
 	}
 	else { player->canDown = true; }
+}
+
+void Demo2::buildPlatform(int posx, int posy, int gridx, int gridy)
+{
+	Background* platform = new Background(Vector2(gridx, gridy), "assets/stoneGrey.tga");
+	platformVector.push_back(platform);
+	platform->pos = Vector2(posx, posy);
+	addchild(platform);
 }

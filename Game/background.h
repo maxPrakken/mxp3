@@ -5,8 +5,11 @@
 class Background : public Entity {
 public:
 	Background();
+	Background(Vector2 gridSize, std::string tiletexture);
 	virtual ~Background();
 	virtual void update(double deltatime);
+
+	std::string tileTexture;
 
 	Vector2 grid;
 	Vector2 spawnPos;

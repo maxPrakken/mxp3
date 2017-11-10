@@ -15,6 +15,10 @@ public:
 private:
 	void wallCollisionCheck();
 
+	void buildPlatform(int posx, int posy, int gridx, int gridy);
+
+	std::vector<Background*>platformVector;
+
 	Player* player;
 
 	Background* background;

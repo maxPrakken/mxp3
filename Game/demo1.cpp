@@ -10,6 +10,7 @@ Demo1::Demo1() : Scene()
 	background = new Background();
 	addchild(background);
 	background->pos = Vector2(0, 0);
+	background->tileTexture = "assets/cobblestone.tga";
 
 	spawnEnemy(Vector2(600, 600));
 	spawnEnemy(Vector2(500, 500));

@@ -6,6 +6,19 @@ Background::Background() : Entity()
 	spawnPos = Vector2(200, 0);
 	startX = spawnPos.x;
 
+	tileTexture = "assets/cobblestone.tga";
+
+	buildBackground();
+}
+
+Background::Background(Vector2 gridSize, std::string tiletexture)
+{
+	grid = gridSize;
+	spawnPos = Vector2(200, 0);
+	startX = spawnPos.x;
+
+	tileTexture = tiletexture;
+
 	buildBackground();
 }
 
@@ -34,7 +47,7 @@ void Background::buildBackground()
 void Background::spawnTile()
 {
 	Entity* tile = new Entity();
-	tile->texturePath = "assets/cobblestone.tga";
+	tile->texturePath = tileTexture;
 	tile->size = Vector2(100, 100);
 	addchild(tile);
 	tileVector.push_back(tile);
