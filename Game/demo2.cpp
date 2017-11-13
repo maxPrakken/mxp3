@@ -25,6 +25,7 @@ void Demo2::update(double deltatime)
 		player->removechild(player->sword);
 	}
 
+	playerCheckGround();
 	player->demo2MovementController(deltatime);
 }
 
@@ -34,4 +35,15 @@ void Demo2::buildPlatform(int posx, int posy, int gridx, int gridy)
 	platformVector.push_back(platform);
 	platform->pos = Vector2(posx, posy);
 	addchild(platform);
+}
+
+void Demo2::playerCheckGround()
+{
+	std::vector<Background*>::iterator it = platformVector.begin();
+	while (it != platformVector.end()) {
+		if ((*it)->isColliding(player)) {
+			std::cout << "and you know" << std::endl;
+		}
+		it++;
+	}
 }

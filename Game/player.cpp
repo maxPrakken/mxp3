@@ -10,7 +10,7 @@ Player::Player() : Entity()
 	size = Vector2(50, 100);
 	velocity = Vector2(0, 0);
 
-	gravity = Vector2(0, 10);
+	gravity = Vector2(0, 500);
 
 	velocity += gravity;
 
@@ -53,8 +53,6 @@ void Player::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	pos += velocity * deltatime;
-
 	if (!dead) {
 		swordTimer += deltatime;
 	}
@@ -65,8 +63,6 @@ void Player::demo1MovementController(double deltatime)
 {
 	animationController();
 	slash();
-
-	pos += velocity;
 
 	if (canUp) {
 		if (Input::getInstance()->getKey(SDLK_w)) {
@@ -115,17 +111,29 @@ void Player::demo1MovementController(double deltatime)
 
 void Player::demo2MovementController(double deltatime)
 {
-		if (Input::getInstance()->getKey(SDLK_a)) {
-			pos -= Vector2(speed, 0) * deltatime;
-			flip = SDL_FLIP_HORIZONTAL;
-			animator.animateFromTo = Vector2(10, 14);
-		}
+	if (velocity.y < 500) {
+		velocity += gravity * deltatime;
+	}
 
-		if (Input::getInstance()->getKey(SDLK_d)) {
-			pos += Vector2(speed, 0) * deltatime;
-			flip = SDL_FLIP_NONE;
-			animator.animateFromTo = Vector2(10, 14);
-		}
+	pos += velocity * deltatime;
+
+	std::cout << pos.x << "  " << pos.y << std::endl;
+
+	if (Input::getInstance()->getKey(SDLK_a)) {
+		pos -= Vector2(speed, 0) * deltatime;
+		flip = SDL_FLIP_HORIZONTAL;
+		animator.animateFromTo = Vector2(10, 14);
+	}
+
+	if (Input::getInstance()->getKey(SDLK_d)) {
+		pos += Vector2(speed, 0) * deltatime;
+		flip = SDL_FLIP_NONE;
+		animator.animateFromTo = Vector2(10, 14);
+	}
+
+	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
+		velocity = Vector2(0, -500);
+	}
 }
 
 void Player::animationController()
@@ -142,7 +150,7 @@ void Player::animationController()
 
 void Player::slash()
 {
-	
+
 	if (Input::getInstance()->getKeyDown(SDLK_SPACE) && swordTimer >= 1.0) {
 		hasSlashed = true;
 		Audio::getInstance()->playAudio("sword.wav");
@@ -151,7 +159,7 @@ void Player::slash()
 	}
 	else {
 		hasSlashed = false;
-	}	
+	}
 }
 
 int Player::die(double deltatime) {

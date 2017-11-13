@@ -9,6 +9,8 @@ public:
 	virtual ~Background();
 	virtual void update(double deltatime);
 
+	std::vector<Entity*> getTileVector() {return tileVector;}
+
 	std::string tileTexture;
 
 	Vector2 grid;

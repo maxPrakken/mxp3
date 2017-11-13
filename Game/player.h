@@ -20,6 +20,8 @@ public:
 	//return hasSlashed bool
 	bool getHasSlashed() { return hasSlashed; }
 
+	Vector2 getVelocity() { return velocity; }
+
 	int health;
 
 	bool dead;

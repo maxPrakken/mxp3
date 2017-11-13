@@ -6,6 +6,8 @@ Background::Background() : Entity()
 	spawnPos = Vector2(200, 0);
 	startX = spawnPos.x;
 
+	size = Vector2(0, 0);
+
 	tileTexture = "assets/cobblestone.tga";
 
 	buildBackground();
@@ -14,7 +16,8 @@ Background::Background() : Entity()
 Background::Background(Vector2 gridSize, std::string tiletexture)
 {
 	grid = gridSize;
-	spawnPos = Vector2(200, 0);
+	spawnPos = Vector2(0, 0);
+	pos = spawnPos;
 	startX = spawnPos.x;
 
 	tileTexture = tiletexture;
@@ -35,6 +38,7 @@ void Background::update(double deltatime)
 {
 	Entity::update(deltatime);
 
+	std::cout << pos.x << " " << pos.y << std::endl;
 }
 
 void Background::buildBackground()
@@ -63,4 +67,6 @@ void Background::spawnTile()
 		spawnPos.y += tile->size.y;
 		//std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
 	}
+
+	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
 }
