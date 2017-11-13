@@ -38,7 +38,6 @@ void Background::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	std::cout << pos.x << " " << pos.y << std::endl;
 }
 
 void Background::buildBackground()
@@ -59,8 +58,6 @@ void Background::spawnTile()
 
 	if (spawnPos.x <= grid.x * tile->size.x) {
 		spawnPos += Vector2(tile->size.x, 0);
-		//std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
-
 	}
 	else if(spawnPos.x > grid.x * tile->size.x) {
 		spawnPos.x = startX;

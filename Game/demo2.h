@@ -12,11 +12,11 @@ public:
 	virtual void update(double deltatime);
 
 private:
-	void buildPlatform(int posx, int posy, int gridx, int gridy);
+	void buildPlatform(Vector2 pos);
 
 	void playerCheckGround();
 
-	std::vector<Background*>platformVector;
+	std::vector<Entity*>platformVector;
 
 	Player* player;
 

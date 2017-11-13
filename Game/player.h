@@ -22,6 +22,8 @@ public:
 
 	Vector2 getVelocity() { return velocity; }
 
+	Vector2 getGravity() { return gravity; }
+
 	int health;
 
 	bool dead;
@@ -31,7 +33,10 @@ public:
 	bool canRight;
 	bool canLeft;
 
+	bool grounded;
+
 	Entity* sword;
+	Vector2 velocity;
 
 private:
 	//animation controller
@@ -49,7 +54,7 @@ private:
 	bool hasSlashed;
 
 	float speed;
-	Vector2 velocity;
+	
 	Vector2 gravity;
 
 	double swordTimer;

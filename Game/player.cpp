@@ -14,6 +14,8 @@ Player::Player() : Entity()
 
 	velocity += gravity;
 
+	grounded = false;
+
 	speed = 150;
 
 	flip = SDL_FLIP_NONE;	/* example (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);*/
@@ -111,13 +113,9 @@ void Player::demo1MovementController(double deltatime)
 
 void Player::demo2MovementController(double deltatime)
 {
-	if (velocity.y < 500) {
+	if (velocity.y < 500 && !grounded) {
 		velocity += gravity * deltatime;
 	}
-
-	pos += velocity * deltatime;
-
-	std::cout << pos.x << "  " << pos.y << std::endl;
 
 	if (Input::getInstance()->getKey(SDLK_a)) {
 		pos -= Vector2(speed, 0) * deltatime;
@@ -131,9 +129,11 @@ void Player::demo2MovementController(double deltatime)
 		animator.animateFromTo = Vector2(10, 14);
 	}
 
-	if (Input::getInstance()->getKeyDown(SDLK_SPACE)) {
+	if (Input::getInstance()->getKeyDown(SDLK_SPACE) && grounded) {
 		velocity = Vector2(0, -500);
 	}
+
+	pos += velocity * deltatime;
 }
 
 void Player::animationController()

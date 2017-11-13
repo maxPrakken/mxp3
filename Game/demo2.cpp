@@ -5,11 +5,11 @@ Demo2::Demo2()
 	background = new Background();
 	addchild(background);
 
+	buildPlatform(Vector2(200, 700));
+
 	player = new Player();
 	player->pos = Vector2(200, 100);
 	addchild(player);
-
-	buildPlatform(200, 200, 2, 1);
 }
 
 Demo2::~Demo2()
@@ -29,20 +29,26 @@ void Demo2::update(double deltatime)
 	player->demo2MovementController(deltatime);
 }
 
-void Demo2::buildPlatform(int posx, int posy, int gridx, int gridy)
+void Demo2::buildPlatform(Vector2 pos)
 {
-	Background* platform = new Background(Vector2(gridx, gridy), "assets/stoneGrey.tga");
-	platformVector.push_back(platform);
-	platform->pos = Vector2(posx, posy);
+	Entity* platform = new Entity();
+	platform->size = Vector2(800, 50);
+	platform->pos = pos;
+	platform->texturePath = "assets/stoneGrey.tga";
 	addchild(platform);
+	platformVector.push_back(platform);
 }
 
 void Demo2::playerCheckGround()
 {
-	std::vector<Background*>::iterator it = platformVector.begin();
+	std::vector<Entity*>::iterator it = platformVector.begin();
 	while (it != platformVector.end()) {
 		if ((*it)->isColliding(player)) {
-			std::cout << "and you know" << std::endl;
+			player->velocity = Vector2(0, 0);
+			player->grounded = true;
+		}
+		else {
+			player->grounded = false;
 		}
 		it++;
 	}
