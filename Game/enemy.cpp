@@ -2,12 +2,12 @@
 
 Enemy::Enemy() : Entity()
 {
-	spitesheetPath = "assets/testSheet.tga";
+	spitesheetPath = "assets/enemyAnim.tga";
 
 	size = Vector2(50, 50);
 
-	animator.rows = Vector2(4, 1);
-	animator.animateFromTo = Vector2(0, 3);
+	animator.rows = Vector2(15, 1);
+	animator.animateFromTo = Vector2(5, 6);
 
 	health = 3;
 
@@ -39,6 +39,8 @@ Enemy::~Enemy()
 void Enemy::update(double deltatime)
 {
 	Entity::update(deltatime);
+
+	std::cout << direction.x << "  " << direction.y << std::endl;
 
 	sword->pos = direction *= 7;
 
