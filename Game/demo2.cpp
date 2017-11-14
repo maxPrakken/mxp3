@@ -5,7 +5,7 @@ Demo2::Demo2()
 	background = new Background();
 	addchild(background);
 
-	buildPlatform(Vector2(200, 700));
+	buildPlatform(Vector2(300, 700));
 
 	player = new Player();
 	player->pos = Vector2(200, 100);
@@ -32,7 +32,7 @@ void Demo2::update(double deltatime)
 void Demo2::buildPlatform(Vector2 pos)
 {
 	Entity* platform = new Entity();
-	platform->size = Vector2(800, 50);
+	platform->size = Vector2(100, 50);
 	platform->pos = pos;
 	platform->texturePath = "assets/stoneGrey.tga";
 	addchild(platform);
