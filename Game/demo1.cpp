@@ -10,7 +10,7 @@ Demo1::Demo1() : Scene()
 	background = new Background();
 	addchild(background);
 	background->pos = Vector2(0, 0);
-	background->tileTexture = "assets/cobblestone.tga";
+	background->tileTexture = "assets/cobblestone.png";
 
 	spawnEnemy(Vector2(600, 600));
 	spawnEnemy(Vector2(500, 500));
@@ -23,14 +23,14 @@ Demo1::Demo1() : Scene()
 	hearts = new Entity();
 	hearts->pos = Vector2(100, 100);
 	hearts->size = Vector2(100, 400);
-	hearts->spitesheetPath = "assets/hearts.tga";
+	hearts->spitesheetPath = "assets/hearts.png";
 	hearts->animator.rows = Vector2(4, 1);
 	hearts->animator.paused = true;
 	hearts->animator.cur = 0;
 	addchild(hearts);
 
 	finishDoor = new Entity();
-	finishDoor->texturePath = "assets/INA.tga";
+	finishDoor->texturePath = "assets/INA.png";
 	finishDoor->size = Vector2(50, 100);
 	finishDoor->pos = Vector2(-200, -200);
 	addchild(finishDoor);

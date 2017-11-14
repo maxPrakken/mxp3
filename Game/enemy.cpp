@@ -2,7 +2,7 @@
 
 Enemy::Enemy() : Entity()
 {
-	spitesheetPath = "assets/enemyAnim.tga";
+	spitesheetPath = "assets/enemyAnim.png";
 
 	size = Vector2(50, 50);
 
@@ -17,7 +17,7 @@ Enemy::Enemy() : Entity()
 	direction = Vector2(0, 0);
 
 	sword = new Entity();
-	sword->spitesheetPath = "assets/swordAnim.tga";
+	sword->spitesheetPath = "assets/swordAnim.png";
 	sword->size = Vector2(100, 100);
 	sword->animator.rows = Vector2(6, 1);
 	sword->animator.paused = true;

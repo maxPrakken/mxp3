@@ -8,7 +8,7 @@ Background::Background() : Entity()
 
 	size = Vector2(0, 0);
 
-	tileTexture = "assets/cobblestone.tga";
+	tileTexture = "assets/cobblestone.png";
 
 	buildBackground();
 }

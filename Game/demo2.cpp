@@ -34,7 +34,7 @@ void Demo2::buildPlatform(Vector2 pos)
 	Entity* platform = new Entity();
 	platform->size = Vector2(100, 50);
 	platform->pos = pos;
-	platform->texturePath = "assets/stoneGrey.tga";
+	platform->texturePath = "assets/stoneGrey.png";
 	addchild(platform);
 	platformVector.push_back(platform);
 }

@@ -2,7 +2,7 @@
 
 Player::Player() : Entity()
 {
-	spitesheetPath = "assets/playerAnim.tga";
+	spitesheetPath = "assets/playerAnim.png";
 
 	animator.rows = Vector2(15, 1);
 	animator.animateFromTo = Vector2(5, 6);
@@ -22,7 +22,7 @@ Player::Player() : Entity()
 
 	sword = new Entity();
 	sword->size = Vector2(100, 100);
-	sword->spitesheetPath = "assets/swordAnim.tga";
+	sword->spitesheetPath = "assets/swordAnim.png";
 	sword->animator.rows = Vector2(6, 1);
 	sword->animator.paused = true;
 	sword->animator.animateFromTo = Vector2(0, 5);
