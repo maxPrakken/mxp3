@@ -2,6 +2,8 @@
 
 Background::Background() : Entity()
 {
+	
+	//test haal weg
 	grid = Vector2(8, 8);
 	spawnPos = Vector2(200, 0);
 	startX = spawnPos.x;
