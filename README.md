@@ -2,9 +2,9 @@
 mxp3 is a 2D SDL2 framework that can be used for game development
 made by Max Prakken.
 
-#h2 System requirements
+# H2 System requirements
 
-Operating systems supported:
+# H3 Operating systems supported:
 	Windows 10
 	Windows 8.1
 	Windows 8
@@ -13,27 +13,27 @@ Operating systems supported:
 	Windows Server 2012
 	Windows Server 2008 R2 SP1
 
-CPU:
+# H3 CPU:
 	1.6 GHz or faster processor
 
-RAM:
+# H3 RAM:
 	1 GB OR RAM (1.5 GB if running on a virtual machine)
 
-HDD:
+# H3 HDD:
 	4 GB of available hard disk space5400 RPM hard disk drive
 
-GPU:	
+# H3 GPU:	
 	DirectX 9-capable video card (1024 x 768 or higher resolution)
 
-#h2 How to run
+# H2 How to run
 
-step 1:
+# H3 step 1:
 	download and or clone the entire solution from [here](https://github.com/maxPrakken/mxp3 "here").
 
-step 2:
+# H3 step 2:
 	paste and or unzip the folder where you want the project to be.
 
-step 3:
+# H3 step 3:
 	you can open the project in two different ways.
 
 	option 1:
@@ -42,14 +42,14 @@ step 3:
 	option 2:
 	open the file by or looking it up in your supported version of Visual Studio's open file option.
 	
-step 4:
+# H3 step 4:
 	in Visual Studio you will have to set the "Game" directory as the startUp project.
 	you do this by rightclicking on the directory and pressing the "Set as StartUp Project" button.
 
-step 5:
+# H3 step 5:
 	in Visual Studio set the compiler to x86.
 	you have to do this because by default it will be x64.
 	you do this by choosing it at the top of Visual Studio directly left from the "Local Windows Debugger" button
 
-now you're all set and can begin working in MXP3 or start playing the demo's made in it.
+# H2 now you're all set and can begin working in MXP3 or start playing the demo's made in it.
 	
