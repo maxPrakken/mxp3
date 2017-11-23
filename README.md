@@ -28,7 +28,7 @@ GPU:
 #h2 How to run
 
 step 1:
-	download and or clone the entire solution from [I'm a inline-style link with title](https://github.com/maxPrakken/mxp3 "here").
+	download and or clone the entire solution from [here](https://github.com/maxPrakken/mxp3 "here").
 
 step 2:
 	paste and or unzip the folder where you want the project to be.
