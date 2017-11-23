@@ -37,7 +37,7 @@ step 3:
 	you can open the project in two different ways.
 
 	option 1:
-	open the project folder and open the Visual Studio solution file called AUTOE.sln.
+	open the project folder and open the Visual Studio solution file called AUTOE.sln with Visual Studio.
 
 	option 2:
 	open the file by or looking it up in your supported version of Visual Studio's open file option.
