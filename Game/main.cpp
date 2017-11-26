@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 		SceneManager::getInstance()->currentScene->update(Renderer::getInstance()->getDeltatime());
 		Renderer::getInstance()->renderScene(SceneManager::getInstance()->currentScene);
 		
-		//a way to switch scenes. still need to do this better, but oh well. it works.
+		//a way to switch scenes. still need to do this better
 
 		if (Input::getInstance()->getKeyDown(SDLK_RIGHTBRACKET))
 		{
