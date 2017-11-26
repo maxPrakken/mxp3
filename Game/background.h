@@ -6,6 +6,7 @@ class Background : public Entity {
 public:
 	Background();
 	Background(Vector2 gridSize, std::string tiletexture);
+	Background(Vector2 gridSize, std::string tiletexture, Vector2 tilesize);
 	virtual ~Background();
 	virtual void update(double deltatime);
 
@@ -18,7 +19,9 @@ public:
 
 private:
 	void buildBackground();
+	void buildBackground(Vector2 tilesize);
 	void spawnTile();
+	void spawnTile(Vector2 tilesize);
 
 	int startX;
 

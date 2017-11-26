@@ -17,5 +17,5 @@ public:
 	virtual void update(double deltatime);
 
 private:
-
+	Background* background;
 };
