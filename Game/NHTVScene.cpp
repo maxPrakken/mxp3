@@ -2,7 +2,9 @@
 
 NHTVScene::NHTVScene() : Scene()
 {
-	background = new Background(Vector2(3, 2), "assets/stoneGrey.png", Vector2(100, 100));
+	
+	background = new Background(Vector2(2, 2), "assets/test.png", Vector2(200, 200));
+	background->pos = Vector2(0, 0);
 	addchild(background);
 
 

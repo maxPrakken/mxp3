@@ -16,6 +16,7 @@ public:
 
 	Vector2 grid;
 	Vector2 spawnPos;
+	Vector2 spawnPos2;
 
 private:
 	void buildBackground();
@@ -24,6 +25,7 @@ private:
 	void spawnTile(Vector2 tilesize);
 
 	int startX;
+	int startX2;
 
 	std::vector<Entity*>tileVector;
 };

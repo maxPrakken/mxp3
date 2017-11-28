@@ -2,7 +2,7 @@
 
 Demo1::Demo1() : Scene()
 {
-	std::cout << "===NEW SCENE===" << std::endl;
+	std::cout << "===DEMO1===" << std::endl;
 	//default value 
 	texturePath = "";
 
