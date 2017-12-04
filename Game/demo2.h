@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../MXP3/include/scene.h"
-#include "background.h"
+#include "grid.h"
 #include "player.h"
 
 class Demo2 : public Scene {
@@ -20,7 +20,7 @@ private:
 
 	Player* player;
 
-	Background* background;
+	Grid* background;
 
 	Entity* wallLeft;
 	Entity* wallRight;

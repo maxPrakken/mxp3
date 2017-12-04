@@ -4,7 +4,8 @@
 
 #include "enemy.h"
 #include "player.h"
-#include "background.h"
+#include "grid.h"
+#include "NHTVPlayer.h"
 
 class NHTVScene : public Scene {
 public:
@@ -17,5 +18,7 @@ public:
 	virtual void update(double deltatime);
 
 private:
-	Background* background;
+
+	Grid* background;
+	NHTVPlayer* player;
 };

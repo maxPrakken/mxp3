@@ -4,7 +4,7 @@
 
 #include "enemy.h"
 #include "player.h"
-#include "background.h"
+#include "grid.h"
 
 class Demo1 : public Scene{
 
@@ -24,7 +24,7 @@ private:
 
 	Entity* finishDoor;
 
-	Background* background;
+	Grid* background;
 
 	void audioController();
 

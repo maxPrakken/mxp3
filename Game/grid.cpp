@@ -1,6 +1,6 @@
-#include "background.h"
+#include "grid.h"
 
-Background::Background() : Entity()
+Grid::Grid() : Entity()
 {
 	grid = Vector2(2, 2);
 	spawnPos = Vector2(200, 0);
@@ -10,10 +10,10 @@ Background::Background() : Entity()
 
 	tileTexture = "assets/cobblestone.png";
 
-	buildBackground();
+	buildgrid();
 }
 
-Background::Background(Vector2 gridSize, std::string tiletexture)
+Grid::Grid(Vector2 gridSize, std::string tiletexture)
 {
 	grid = gridSize;
 	spawnPos = Vector2(0, 0);
@@ -22,10 +22,10 @@ Background::Background(Vector2 gridSize, std::string tiletexture)
 
 	tileTexture = tiletexture;
 
-	buildBackground();
+	buildgrid();
 }
 
-Background::Background(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)
+Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)
 {
 	grid = gridSize;
 	spawnPos2 = Vector2(0, 0);
@@ -34,10 +34,10 @@ Background::Background(Vector2 gridSize, std::string tiletexture, Vector2 tilesi
 
 	tileTexture = tiletexture;
 
-	buildBackground(tilesize);
+	buildgrid(tilesize);
 }
 
-Background::~Background()
+Grid::~Grid()
 {
 	for (unsigned int i = 0; i < tileVector.size(); i++) {
 		removechild(tileVector[i]);
@@ -46,20 +46,20 @@ Background::~Background()
 	tileVector.clear();
 }
 
-void Background::update(double deltatime)
+void Grid::update(double deltatime)
 {
 	Entity::update(deltatime);
 
 }
 
-void Background::buildBackground()
+void Grid::buildgrid()
 {
 	for (int i = 0; i < grid.x * grid.y; i++) {
 		spawnTile();
 	}
 }
 
-void Background::buildBackground(Vector2 tilesize)
+void Grid::buildgrid(Vector2 tilesize)
 {
 	for (int i = 0; i < grid.x * grid.y; i++) {
 		spawnTile(tilesize);
@@ -67,7 +67,7 @@ void Background::buildBackground(Vector2 tilesize)
 	}
 }
 
-void Background::spawnTile()
+void Grid::spawnTile()
 {
 	Entity* tile = new Entity();
 	tile->texturePath = tileTexture;
@@ -88,7 +88,7 @@ void Background::spawnTile()
 	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
 }
 
-void Background::spawnTile(Vector2 tilesize)
+void Grid::spawnTile(Vector2 tilesize)
 {
 	Entity* tile = new Entity();
 	tile->texturePath = tileTexture;

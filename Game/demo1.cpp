@@ -7,7 +7,7 @@ Demo1::Demo1() : Scene()
 	texturePath = "";
 
 	//background needs to be divined up top
-	background = new Background();
+	background = new Grid();
 	addchild(background);
 	background->pos = Vector2(0, 0);
 	background->tileTexture = "assets/cobblestone.png";

@@ -2,7 +2,7 @@
 
 Demo2::Demo2()
 {
-	background = new Background();
+	background = new Grid();
 	addchild(background);
 
 	buildPlatform(Vector2(300, 700));
