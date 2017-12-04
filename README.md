@@ -20,7 +20,7 @@ made by Max Prakken.
 	1 GB OR RAM (1.5 GB if running on a virtual machine)
 
 ### HDD:
-	4 GB of available hard disk space5400 RPM hard disk drive
+	4 GB of available hard disk space, 5400 RPM hard disk drive
 
 ### GPU:	
 	DirectX 9-capable video card (1024 x 768 or higher resolution)
@@ -28,7 +28,7 @@ made by Max Prakken.
 ## How to run
 
 ### step 1:
-	download and or clone the entire solution from [here](https://github.com/maxPrakken/mxp3 "here").
+	download and or clone the entire solution from [here](https://github.com/maxPrakken/mxp3).
 
 ### step 2:
 	paste and or unzip the folder where you want the project to be.
