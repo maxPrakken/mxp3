@@ -2,7 +2,11 @@
 
 NHTVPlayer::NHTVPlayer()
 {
+	texturePath = "assets/INA.png";
+
 	grounded = false;
+
+	speed = 100;
 
 	velocity = Vector2(0, 0);
 	gravity = Vector2(0, 500);

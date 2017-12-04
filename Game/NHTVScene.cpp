@@ -8,6 +8,8 @@ NHTVScene::NHTVScene() : Scene()
 	addchild(background);
 
 	player = new NHTVPlayer();
+	player->size = Vector2(100, 100);
+	addchild(player);
 }
 
 NHTVScene::~NHTVScene()
