@@ -3,10 +3,12 @@
 Grid::Grid() : Entity()
 {
 	grid = Vector2(2, 2);
-	spawnPos = Vector2(200, 0);
+	spawnPos = Vector2(0, 0);
 	startX = spawnPos.x;
 
 	size = Vector2(0, 0);
+
+	firstTile = true;
 
 	tileTexture = "assets/cobblestone.png";
 
@@ -20,6 +22,8 @@ Grid::Grid(Vector2 gridSize, std::string tiletexture)
 	pos = spawnPos;
 	startX = spawnPos.x;
 
+	firstTile = true;
+
 	tileTexture = tiletexture;
 
 	buildgrid();
@@ -31,6 +35,8 @@ Grid::Grid(Vector2 gridSize, std::string tiletexture, Vector2 tilesize)
 	spawnPos2 = Vector2(0, 0);
 	pos = spawnPos2;
 	startX2 = spawnPos2.x;
+
+	firstTile = true;
 
 	tileTexture = tiletexture;
 
@@ -63,7 +69,6 @@ void Grid::buildgrid(Vector2 tilesize)
 {
 	for (int i = 0; i < grid.x * grid.y; i++) {
 		spawnTile(tilesize);
-		//std::cout << i << std::endl;
 	}
 }
 
@@ -82,7 +87,6 @@ void Grid::spawnTile()
 	else if(spawnPos.x > grid.x * tile->size.x) {
 		spawnPos.x = startX;
 		spawnPos.y += tile->size.y;
-		//std::cout << spawnPos.x << " " << spawnPos.y << std::endl;
 	}
 
 	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
@@ -97,8 +101,6 @@ void Grid::spawnTile(Vector2 tilesize)
 	addchild(tile);
 	tileVector.push_back(tile);
 
-	std::cout << spawnPos2.x << std::endl;
-
 	if (spawnPos2.x < grid.x * tile->size.x) {
 		spawnPos2 += Vector2(tile->size.x, 0);
 	}
@@ -109,6 +111,6 @@ void Grid::spawnTile(Vector2 tilesize)
 		spawnPos2.x = startX2;
 		spawnPos2.y += tile->size.y;
 	}
-
 	size = Vector2(grid.x * tile->size.x, grid.y * tile->size.y);
+
 }

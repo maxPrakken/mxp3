@@ -27,5 +27,7 @@ private:
 	int startX;
 	int startX2;
 
+	bool firstTile;
+
 	std::vector<Entity*>tileVector;
 };

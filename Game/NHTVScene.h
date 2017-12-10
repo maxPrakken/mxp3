@@ -19,6 +19,12 @@ public:
 
 private:
 
+	void EntitiesGrounded();
+
+	void platformSpawn(Vector2 position);
+
+	std::vector<Entity*>platformVector;
+
 	Grid* background;
 	NHTVPlayer* player;
 };

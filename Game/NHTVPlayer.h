@@ -3,6 +3,8 @@
 #include "../MXP3/include/entity.h"
 #include <input.h>
 
+class NHTVScene;
+
 class NHTVPlayer : public Entity {
 public:
 

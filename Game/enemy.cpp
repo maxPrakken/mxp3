@@ -40,8 +40,6 @@ void Enemy::update(double deltatime)
 {
 	Entity::update(deltatime);
 
-	std::cout << direction.x << "  " << direction.y << std::endl;
-
 	sword->pos = direction *= 7;
 
 	die(deltatime);

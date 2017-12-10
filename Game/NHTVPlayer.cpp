@@ -9,7 +9,7 @@ NHTVPlayer::NHTVPlayer()
 	speed = 100;
 
 	velocity = Vector2(0, 0);
-	gravity = Vector2(0, 500);
+	gravity = Vector2(0, 300);
 }
 
 NHTVPlayer::~NHTVPlayer()
@@ -19,9 +19,9 @@ NHTVPlayer::~NHTVPlayer()
 
 void NHTVPlayer::update(double deltatime)
 {
-	Entity::update(deltatime); \
+	Entity::update(deltatime); 
 
-		movement(deltatime);
+	movement(deltatime);
 }
 
 void NHTVPlayer::movement(double deltatime)
