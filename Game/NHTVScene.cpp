@@ -23,6 +23,8 @@ void NHTVScene::update(double deltatime)
 {
 	Scene::update(deltatime);
 
+	std::cout << player->velocity.y << std::endl;
+
 	EntitiesGrounded();
 }
 
@@ -30,7 +32,7 @@ void NHTVScene::EntitiesGrounded()
 {
 	std::vector<Entity*>::iterator it = platformVector.begin();
 	while (it != platformVector.end()) {
-		if (player->isColliding((*it)) && player->pos.y < (*it)->pos.y - 90 && player->velocity.y > 0) {
+		if (player->isColliding((*it)) && player->pos.y < (*it)->pos.y - 90 && player->velocity.y >= 0) {
 			player->velocity = Vector2(0, 0);
 			player->grounded = true;
 		}

@@ -9,7 +9,7 @@ NHTVPlayer::NHTVPlayer()
 	speed = 100;
 
 	velocity = Vector2(0, 0);
-	gravity = Vector2(0, 300);
+	gravity = Vector2(0, 100);
 }
 
 NHTVPlayer::~NHTVPlayer()
