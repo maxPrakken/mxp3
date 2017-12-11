@@ -22,6 +22,7 @@ void NHTVPlayer::update(double deltatime)
 	Entity::update(deltatime); 
 
 	movement(deltatime);
+	bulletRotDir();	
 }
 
 void NHTVPlayer::movement(double deltatime)
@@ -47,10 +48,20 @@ void NHTVPlayer::movement(double deltatime)
 
 void NHTVPlayer::shoot()
 {
+	Bullet* bullet = new Bullet();
+	bullet->texturePath = "asssets/INA.png";
+	//direction and rotations stuff here
 
+	bullets.push_back(bullet);
+	//addchild bullets to scene through bullets vector
 }
 
 void NHTVPlayer::deflect()
 {
 
+}
+
+void NHTVPlayer::bulletRotDir()
+{
+	//do bullet rotation and direction here
 }

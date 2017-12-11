@@ -2,6 +2,7 @@
 
 #include "../MXP3/include/entity.h"
 #include <input.h>
+#include "bullet.h"
 
 class NHTVScene;
 
@@ -37,11 +38,15 @@ public:
 
 	Vector2 velocity;
 
+	std::vector<Bullet*> getBullets() { return bullets; }
+
 private:
+
+	void bulletRotDir();
 
 	float speed;
 
 	Vector2 gravity;
 
-	std::vector<Entity*>bullets;
+	std::vector<Bullet*>bullets;
 };

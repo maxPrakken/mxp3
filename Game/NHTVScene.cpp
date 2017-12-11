@@ -26,6 +26,7 @@ void NHTVScene::update(double deltatime)
 	std::cout << player->velocity.y << std::endl;
 
 	EntitiesGrounded();
+	addBulletsToScene();
 }
 
 void NHTVScene::EntitiesGrounded()
@@ -62,4 +63,14 @@ void NHTVScene::platformSpawn(Vector2 position)
 
 	addchild(platform);
 	addchild(platform2);
+}
+
+void NHTVScene::addBulletsToScene()
+{
+	std::vector<Bullet*>::iterator it = player->getBullets().begin();
+	while (it != player->getBullets().end()) {
+		addchild((*it));
+
+		it++;
+	}
 }

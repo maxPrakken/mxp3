@@ -6,6 +6,7 @@
 #include "player.h"
 #include "grid.h"
 #include "NHTVPlayer.h"
+#include "bullet.h"
 
 class NHTVScene : public Scene {
 public:
@@ -22,6 +23,8 @@ private:
 	void EntitiesGrounded();
 
 	void platformSpawn(Vector2 position);
+
+	void addBulletsToScene();
 
 	std::vector<Entity*>platformVector;
 
