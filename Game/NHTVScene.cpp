@@ -69,8 +69,9 @@ void NHTVScene::addBulletsToScene()
 {
 	std::vector<Bullet*>::iterator it = player->getBullets().begin();
 	while (it != player->getBullets().end()) {
-		addchild((*it));
-
+		if((*it)->getParent() == null) {
+			addchild((*it));
+		}
 		it++;
 	}
 }
