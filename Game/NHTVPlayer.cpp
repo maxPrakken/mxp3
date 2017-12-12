@@ -21,6 +21,8 @@ void NHTVPlayer::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
+	std::cout << pos.angleRelTo(Input::getInstance()->getMouseToScreen()) << std::endl;
+
 	movement(deltatime);
 	bulletRotDir();	
 }
@@ -61,7 +63,7 @@ void NHTVPlayer::deflect()
 
 }
 
-void NHTVPlayer::bulletRotDir()
+void NHTVPlayer::bulletRotDir(Bullet* bullet)
 {
 	//do bullet rotation and direction here
 }

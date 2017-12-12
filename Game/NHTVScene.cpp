@@ -23,7 +23,7 @@ void NHTVScene::update(double deltatime)
 {
 	Scene::update(deltatime);
 
-	std::cout << player->velocity.y << std::endl;
+	//std::cout << player->velocity.y << std::endl;
 
 	EntitiesGrounded();
 	addBulletsToScene();
@@ -73,6 +73,8 @@ void NHTVScene::addBulletsToScene()
 		if(&(*it)->getParent() == NULL) {
 			addchild((*it));
 		}
+		player->bulletRotDir((*it));
+
 		it++;
 	}
 }

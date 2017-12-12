@@ -96,13 +96,9 @@ int Vector2::mag() {
 	return sqrt(x*x + y*y);
 }
 
-float Vector2::getAngle()
-{
-	
-}
-
 float Vector2::angleRelTo(Vector2 pos)
 {
 	float angle = atan2(pos.x - x, pos.y - y);
 	float degrees = angle * 180 / M_PI;
+	return degrees;
 }
