@@ -1,8 +1,11 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
+#define _USE_MATH_DEFINES
+
 #include <math.h>
 #include <iostream>
+
 class __declspec(dllexport) Vector2 {
 
 public:
@@ -41,6 +44,8 @@ public:
 	void normalize();
 
 	int mag();
+
+	float angleRelTo(Vector2 pos);
 
 
 private:
