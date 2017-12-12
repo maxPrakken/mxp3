@@ -67,9 +67,10 @@ void NHTVScene::platformSpawn(Vector2 position)
 
 void NHTVScene::addBulletsToScene()
 {
-	std::vector<Bullet*>::iterator it = player->getBullets().begin();
-	while (it != player->getBullets().end()) {
-		if((*it)->getParent() == null) {
+	std::vector<Bullet*> bulletVectorCopy = player->getBullets();
+	std::vector<Bullet*>::iterator it = bulletVectorCopy.begin();
+	while (it != bulletVectorCopy.end()) {
+		if(&(*it)->getParent() == NULL) {
 			addchild((*it));
 		}
 		it++;
