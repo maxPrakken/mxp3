@@ -24,7 +24,7 @@ void NHTVPlayer::update(double deltatime)
 	std::cout << pos.angleRelTo(Input::getInstance()->getMouseToScreen()) << std::endl;
 
 	movement(deltatime);
-	bulletRotDir();	
+	//bulletRotDir();	
 }
 
 void NHTVPlayer::movement(double deltatime)
