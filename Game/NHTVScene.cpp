@@ -37,11 +37,8 @@ void NHTVScene::EntitiesGrounded()
 			player->velocity = Vector2(0, 0);
 			player->grounded = true;
 		}
-		else { player->grounded = false; }
-
 		it++;
 	}
-
 }
 
 void NHTVScene::platformSpawn(Vector2 position)

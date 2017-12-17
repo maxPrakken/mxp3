@@ -21,7 +21,7 @@ void NHTVPlayer::update(double deltatime)
 {
 	Entity::update(deltatime); 
 
-	std::cout << pos.angleRelTo(Input::getInstance()->getMouseToScreen()) << std::endl;
+	//std::cout << pos.angleRelTo(Input::getInstance()->getMouseToScreen()) << std::endl;
 
 	movement(deltatime);
 	//bulletRotDir();	
@@ -44,6 +44,12 @@ void NHTVPlayer::movement(double deltatime)
 	if (Input::getInstance()->getKeyDown(SDLK_SPACE) && grounded) {
 		velocity = Vector2(0, -500);
 	}
+
+	if (velocity.y != 0) {
+		grounded = false;
+	}
+
+	std::cout << velocity.y << std::endl;
 
 	pos += velocity * deltatime;
 }
