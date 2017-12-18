@@ -37,6 +37,8 @@ void NHTVScene::EntitiesGrounded()
 			player->velocity = Vector2(0, 0);
 			player->grounded = true;
 		}
+		else
+		player->grounded = false;
 		it++;
 	}
 }
@@ -49,17 +51,17 @@ void NHTVScene::platformSpawn(Vector2 position)
 	platform->texturePath = "assets/cobblestone.png";
 	platform2->texturePath = "assets/cobblestone.png";
 
-	platform->size = Vector2(100, 100);
+	platform->size = Vector2(50, 50);
 	platform2->size = Vector2(100, 100);
 
 	platform->pos = position;
 	platform2->pos = Vector2(platform->pos.x + platform->size.x, platform->pos.y);
 
 	platformVector.push_back(platform);
-	platformVector.push_back(platform2);
+	//platformVector.push_back(platform2);
 
 	addchild(platform);
-	addchild(platform2);
+	//addchild(platform2);
 }
 
 void NHTVScene::addBulletsToScene()

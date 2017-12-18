@@ -147,7 +147,6 @@ void Renderer::renderEntity(Entity* entity)
 	while (it != entity->childrenVec.end())
 	{
 		renderEntity((*it));
-		//entity->update(deltatime);
 		it++;
 	}
 }
