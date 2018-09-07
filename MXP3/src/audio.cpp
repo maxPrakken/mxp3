@@ -7,6 +7,7 @@ Audio::Audio()
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
 		printf("mixer initialization error: ", Mix_GetError());
 	}
+	volumeAudio(64);
 }
 
 Audio::~Audio()
@@ -51,6 +52,18 @@ void Audio::resumeAudio() {
 void Audio::resumeAudio(int channel)
 {
 	Mix_Resume(channel);
+}
+
+void Audio::volumeAudio(int volume)
+{
+	Mix_Volume(-1, volume);
+	this->volume = volume;
+}
+
+void Audio::volumeAudio(int channel, int volume)
+{
+	Mix_Volume(channel, volume);
+	this->volume = volume;
 }
 
 Mix_Chunk * Audio::getChunk(std::string filename)

@@ -10,7 +10,7 @@ Grid::Grid() : Entity()
 
 	firstTile = true;
 
-	tileTexture = "assets/cobblestone.png";
+	tileTexture = "assets/INA.png";
 
 	buildgrid();
 }

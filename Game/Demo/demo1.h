@@ -4,7 +4,7 @@
 
 #include "enemy.h"
 #include "player.h"
-#include "grid.h"
+#include "../grid.h"
 
 class Demo1 : public Scene{
 

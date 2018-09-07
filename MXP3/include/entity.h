@@ -5,6 +5,7 @@
 #include "animator.h"
 #include <vector>
 #include "audio.h"
+#include "renderer.h"
 
 class Renderer;
 
@@ -48,17 +49,42 @@ public:
 	//checks if the entity is colliding with another entity
 	bool isColliding(Entity* other);
 
+	//checks if the entity is colliding with a vector2 point
+	bool isColliding(Vector2 other);
+
+	//checks if entity is outside of the canvas
+	bool isOutOfCanvas();
+
 	//gets parent of the entity
 	Entity getParent() { return (*_parent); }
 
-	//vector with chilren of current entity
-	std::vector<Entity*>childrenVec;
+	//gets parent pointer of the entity
+	Entity* getParentPointer() { return _parent; }
+
+	//vector with chilren of entity
+	std::vector<std::vector<Entity*>>ZLayers;
+
+	//gets Zlayer
+	int getZlayer() { return ZLayer; }
+	//sets ZLayer amount int
+	void setZLayer(int value) { 
+		if (value >= 0) {
+			ZLayer = value;
+		}
+		else {
+			std::cout << "ZLayer can't be lower than 0";
+		}
+	}
 
 	SDL_RendererFlip flip;
 private:
 
 	//parent entity
 	Entity* _parent;
+
+	//zlayer the entity will be placed at
+	int ZLayer = 0;
+	std::vector<Entity*>ZLayer_base;
 
 	//current and next entity in list
 	int _guid; 

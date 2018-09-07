@@ -7,8 +7,9 @@ Renderer::Renderer()
 	LAST = 0;
 	deltatime = 0;
 
-	resX = 1200;
-	resY = 800;
+	resX = RESOLUTION_X;
+	resY = RESOLUTION_Y;
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cout << "failed to initialize SDL2: " << SDL_GetError() << std::endl;
@@ -17,6 +18,12 @@ Renderer::Renderer()
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		std::cout << "Could not initiate SDL2_IMG: " << IMG_GetError() << std::endl;
+		SDL_Quit();
+		exit(-1);
+	}
+
+	if (TTF_Init() == -1) {
+		std::cout << "Could not initiate SDL2_TTF: " << TTF_GetError() << std::endl;
 		SDL_Quit();
 		exit(-1);
 	}
@@ -30,7 +37,7 @@ Renderer::Renderer()
 	}
 
 	//creates renderer and enables VSYNC
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, VSYNC);
 
 	if (renderer == NULL) {
 		std::cout << "failed to create renderer: " << SDL_GetError() << std::endl;
@@ -40,6 +47,10 @@ Renderer::Renderer()
 	}
 
 	std::cout << "Renderer Created" << std::endl;
+
+	//open font
+	font = TTF_OpenFont(FONT, FONT_SIZE);
+
 }
 
 Renderer::Renderer(int rX, int rY)
@@ -76,6 +87,7 @@ Renderer::Renderer(int rX, int rY)
 
 Renderer::~Renderer()
 {
+	TTF_CloseFont(font);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -104,9 +116,9 @@ void Renderer::showTexture(SDL_Texture* tex) {
 void Renderer::update()
 {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderPresent(renderer);
-	SDL_RenderClear(renderer);
-
+	ShowText();
+	SDL_RenderPresent(this->renderer);
+	SDL_RenderClear(this->renderer);
 	calculateDeltatime();
 }
 
@@ -143,22 +155,41 @@ void Renderer::renderEntity(Entity* entity)
 		}
 		else { renderSpritesheet(texture, entity->animator.getChuck(Vector2(entity->animator.playAnimation(entity->animator.animateFromTo.x, &entity->animator.cur, entity->animator.animateFromTo.y), 0), texture->Resolution()), &r, entity->flip, entity); }
 	}
-	std::vector<Entity*>::iterator it = entity->childrenVec.begin();
-	while (it != entity->childrenVec.end())
+
+	std::vector<std::vector<Entity*>>::iterator it = entity->ZLayers.begin();
+	while (it != entity->ZLayers.end())
 	{
-		renderEntity((*it));
+		std::vector<Entity*>::iterator at = (*it).begin();
+		while (at != (*it).end()) {
+			renderEntity((*at));
+			at++;
+		}
 		it++;
 	}
 }
 
 void Renderer::renderScene(Entity * entity)
 {
-	SDL_RenderClear(this->renderer);
-
 	renderEntity(entity);
+}
 
+void Renderer::RenderText(std::string str, SDL_Color c, SDL_Rect *r)
+{
+	SDL_Surface* surf = TTF_RenderText_Solid(font, str.c_str(), c);
 
-	SDL_RenderPresent(this->renderer);
+	SDL_Texture* text = SDL_CreateTextureFromSurface(this->renderer, surf);
+	textMap.emplace(text, r);
+	SDL_FreeSurface(surf);
+}
+
+void Renderer::ShowText()
+{
+	std::map<SDL_Texture*, SDL_Rect*>::iterator it = textMap.begin();
+	while (it != textMap.end()) {
+		SDL_RenderCopy(this->renderer, (*it).first, NULL, (*it).second);
+		SDL_DestroyTexture((*it).first);
+		it = textMap.erase(it);
+	}
 }
 
 void Renderer::renderTexture(Texture* texture, SDL_Rect* rect)
@@ -218,7 +249,7 @@ void Renderer::destroyTexture(std::string path)
 		delete texture;
 		return;
 	}
-	std::cout << "Image not found: its over anakin, i have the high ground" << std::endl;
+	std::cout << "Image not found: its over imagekin, i have the high ground" << std::endl;
 }
 
 void Renderer::calculateDeltatime()

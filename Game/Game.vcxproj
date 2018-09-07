@@ -22,7 +22,7 @@
     <ProjectGuid>{48ADE645-11EA-449D-93CF-62EAB08557BD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -156,23 +156,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Demo\demo1.cpp" />
+    <ClCompile Include="Demo\enemy.cpp" />
+    <ClCompile Include="Demo\player.cpp" />
     <ClCompile Include="grid.cpp" />
-    <ClCompile Include="demo1.cpp" />
-    <ClCompile Include="demo2.cpp" />
-    <ClCompile Include="demo3.cpp" />
-    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="exampleScene.cpp" />
-    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Demo\demo1.h" />
+    <ClInclude Include="Demo\enemy.h" />
+    <ClInclude Include="Demo\player.h" />
     <ClInclude Include="grid.h" />
-    <ClInclude Include="demo1.h" />
-    <ClInclude Include="demo2.h" />
-    <ClInclude Include="demo3.h" />
-    <ClInclude Include="enemy.h" />
-    <ClInclude Include="exampleScene.h" />
-    <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

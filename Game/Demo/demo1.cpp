@@ -190,7 +190,7 @@ void Demo1::goToNextLevel()
 	if (enemiesAlive <= 0) {
 		finishDoor->pos = Vector2(800, 200);
 		if (player->isColliding(finishDoor)) {
-			std::cout << "you won, go to next demo by pressing ]" << std::endl;
+			std::cout << "you won!" << std::endl;
 		}
 	}
 }
