@@ -7,10 +7,10 @@ Demo1::Demo1() : Scene()
 	texturePath = "";
 
 	//background needs to be divined up top
-	background = new Grid(Vector2(8, 8), "assets/cobblestone.png", Vector2(100, 100));
+	background = new Grid(Vector2(8, 8), "../../Game/assets/cobblestone.png", Vector2(100, 100));
 	addchild(background);
 	background->pos = Vector2(100, 0);
-	background->tileTexture = "assets/cobblestone.png";
+	background->tileTexture = "../../Game/assets/cobblestone.png";
 
 	spawnEnemy(Vector2(600, 600));
 	spawnEnemy(Vector2(500, 500));

@@ -42,7 +42,7 @@
     <ClCompile Include="src\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\mathM.cpp">
+    <ClCompile Include="src\mathM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

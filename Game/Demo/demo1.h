@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../MXP3/include/scene.h"
+#include "../../MXP3/include/scene.h"
 
 #include "enemy.h"
 #include "player.h"

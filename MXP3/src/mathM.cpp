@@ -1,4 +1,4 @@
-#include "mathM.h"
+#include "../include/mathM.h" 
 
 MathM *MathM::instance = NULL;
 MathM::MathM()

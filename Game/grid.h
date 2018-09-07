@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../MXP3/include/entity.h"
+#include <entity.h>
 
 class Grid : public Entity {
 public:
